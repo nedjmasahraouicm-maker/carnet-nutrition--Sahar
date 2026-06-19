@@ -2,295 +2,171 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Carnet de Suivi</title>
+<title>Carnet de Suivi — Nutrition & Bien-être</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#FCFAF7">
 <meta name="description" content="Carnet de suivi nutrition & bien-être — espace partagé client / coach.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Carnet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://rjfqxdmyrjwviijicnlu.supabase.co">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FCFAF7;
-  --ink:#2B2622;
-  --ink-soft:#6B6258;
-  --coral:#E8542E;
-  --coral-deep:#C8401D;
-  --emerald:#1F6F5C;
-  --emerald-soft:#E4EFEA;
-  --taupe:#D9D2C7;
-  --peach:#F5E6D8;
-  --peach-deep:#EFD3BC;
-  --card:#ffffff;
+  --paper:#FCFAF7; --ink:#2B2622; --ink-soft:#6B6258;
+  --coral:#E8542E; --coral-deep:#C8401D;
+  --emerald:#1F6F5C; --emerald-soft:#E4EFEA;
+  --taupe:#D9D2C7; --peach:#F5E6D8; --peach-deep:#EFD3BC;
+  --card:#ffffff; --gold:#D4A04C;
   --shadow: 0 1px 2px rgba(43,38,34,0.04), 0 8px 24px rgba(43,38,34,0.06);
-  --radius: 18px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --radius: 18px; --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
-html{ -webkit-text-size-adjust:100%; }
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Plus Jakarta Sans', sans-serif;
-  -webkit-font-smoothing:antialiased;
-  min-height:100vh;
-  overflow-x:hidden;
-}
+html{-webkit-text-size-adjust:100%;}
+body{background:var(--paper); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh; overflow-x:hidden;}
 .app{max-width:920px;margin:0 auto;padding:20px 16px calc(80px + var(--safe-bottom));}
 @media (min-width:600px){ .app{padding:24px 20px 80px;} }
+h1,h2,h3{font-family:'Fraunces',serif; margin:0; letter-spacing:-0.01em;}
+.eyebrow{font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); font-weight:700;}
+.mono{font-family:'Space Mono',monospace;}
 
-h1,h2,h3{font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em;}
-.eyebrow{
-  font-family:'Space Mono', monospace;
-  font-size:11px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--coral);
-  font-weight:700;
-}
-.mono{font-family:'Space Mono', monospace;}
-
-/* ===== Gate screen ===== */
-.gate{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px 16px calc(24px + var(--safe-bottom));
-}
-.gate-card{
-  max-width:440px;
-  width:100%;
-  text-align:center;
-}
-.gate-seed{
-  width:64px;height:64px;margin:0 auto 20px;
-}
+/* Gate */
+.gate{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px calc(24px + var(--safe-bottom));}
+.gate-card{max-width:440px; width:100%; text-align:center;}
+.gate-seed{width:64px;height:64px;margin:0 auto 20px;}
 .gate-card h1{font-size:30px; margin-bottom:6px;}
-@media (min-width:600px){ .gate-card h1{font-size:32px;} }
-.gate-sub{color:var(--ink-soft); font-size:15px; margin-bottom:32px; line-height:1.5;}
-.gate-tabs{
-  display:flex;
-  background:var(--peach);
-  border-radius:14px;
-  padding:4px;
-  margin-bottom:24px;
-}
-.gate-tab{
-  flex:1;
-  padding:10px 12px;
-  border-radius:11px;
-  text-align:center;
-  font-weight:600;
-  font-size:14px;
-  cursor:pointer;
-  color:var(--ink-soft);
-  transition:all .2s ease;
-  border:none;
-  background:transparent;
-  font-family:inherit;
-}
+@media (min-width:600px){ .gate-card h1{font-size:34px;} }
+.gate-sub{color:var(--ink-soft); font-size:15px; margin-bottom:28px; line-height:1.5;}
+.gate-tabs{display:flex; background:var(--peach); border-radius:14px; padding:4px; margin-bottom:24px;}
+.gate-tab{flex:1; padding:10px 12px; border-radius:11px; font-weight:600; font-size:14px; cursor:pointer; color:var(--ink-soft); border:none; background:transparent; font-family:inherit; min-height:42px;}
 .gate-tab.active{background:var(--card); color:var(--ink); box-shadow:var(--shadow);}
 .gate-form{display:flex; flex-direction:column; gap:12px;}
-input[type=text], input[type=password]{
-  font-family:inherit;
-  font-size:16px;
-  padding:14px 16px;
-  border-radius:12px;
-  border:1.5px solid var(--taupe);
-  background:var(--card);
-  color:var(--ink);
-  outline:none;
-  width:100%;
-}
-input[type=text]:focus, input[type=password]:focus{border-color:var(--coral);}
-.btn{
-  font-family:'Plus Jakarta Sans', sans-serif;
-  font-weight:700;
-  font-size:15px;
-  padding:14px 20px;
-  border-radius:12px;
-  border:none;
-  cursor:pointer;
-  transition:transform .15s ease, box-shadow .15s ease;
-  min-height:48px;
-}
+input[type=text], input[type=password], input[type=tel]{font-family:inherit; font-size:16px; padding:14px 16px; border-radius:12px; border:1.5px solid var(--taupe); background:var(--card); color:var(--ink); outline:none; width:100%;}
+input:focus{border-color:var(--coral);}
+.btn{font-family:inherit; font-weight:700; font-size:15px; padding:14px 20px; border-radius:12px; border:none; cursor:pointer; transition:transform .15s ease; min-height:48px;}
 .btn:active{transform:scale(0.97);}
 .btn-primary{background:var(--coral); color:white;}
 .btn-primary:hover{background:var(--coral-deep);}
+.btn-emerald{background:var(--emerald); color:white;}
 .btn-ghost{background:var(--peach); color:var(--ink);}
+.btn:disabled{opacity:0.6; cursor:not-allowed;}
 .gate-note{font-size:12.5px; color:var(--ink-soft); margin-top:18px; line-height:1.5;}
-.gate-error{
-  background:#FDECE6; border:1px solid #F5BFA8; color:var(--coral-deep);
-  font-size:13px; padding:10px 12px; border-radius:10px; margin-top:12px; display:none;
-}
+.gate-error{background:#FDECE6; border:1px solid #F5BFA8; color:var(--coral-deep); font-size:13px; padding:10px 12px; border-radius:10px; margin-top:12px; display:none;}
 .gate-error.show{display:block;}
+.pin-help{font-size:12px; color:var(--ink-soft); margin-top:-4px; margin-bottom:6px;}
 
-/* ===== Top bar ===== */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:24px;
-  flex-wrap:wrap;
-  gap:12px;
-}
+/* Top bar */
+.topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:12px;}
 .brand{display:flex; align-items:center; gap:10px; min-width:0;}
 .brand-seed{width:34px;height:34px; flex-shrink:0;}
 .brand-text{min-width:0;}
 .brand-text h1{font-size:18px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .brand-text .who{font-size:12px; color:var(--ink-soft); font-weight:500;}
 .topbar-actions{display:flex; gap:8px; align-items:center;}
-.pill-btn{
-  font-family:'Plus Jakarta Sans';
-  font-size:13px;
-  font-weight:600;
-  padding:9px 14px;
-  border-radius:100px;
-  border:1.5px solid var(--taupe);
-  background:var(--card);
-  color:var(--ink-soft);
-  cursor:pointer;
-  min-height:40px;
-}
+.pill-btn{font-family:inherit; font-size:13px; font-weight:600; padding:9px 14px; border-radius:100px; border:1.5px solid var(--taupe); background:var(--card); color:var(--ink-soft); cursor:pointer; min-height:40px;}
 .pill-btn:hover{border-color:var(--coral); color:var(--coral);}
 
-/* ===== Day selector ===== */
-.day-strip{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  padding:4px 2px 12px;
-  margin-bottom:8px;
-  scrollbar-width:thin;
+/* Coach message banner */
+.coach-msg{
+  background:linear-gradient(135deg, var(--emerald) 0%, #2B8A6F 100%);
+  color:white; border-radius:var(--radius); padding:18px 20px;
+  margin-bottom:18px; box-shadow:0 8px 24px rgba(31,111,92,0.25); position:relative;
 }
-.day-chip{
-  flex-shrink:0;
-  font-family:'Space Mono', monospace;
-  font-size:12px;
-  padding:10px 14px;
-  border-radius:11px;
-  border:1.5px solid var(--taupe);
-  background:var(--card);
-  color:var(--ink-soft);
-  cursor:pointer;
-  white-space:nowrap;
-  min-height:40px;
-  display:inline-flex; align-items:center;
+.coach-msg .from{font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; opacity:0.85; margin-bottom:6px;}
+.coach-msg .body{font-family:'Fraunces',serif; font-size:17px; line-height:1.45;}
+.coach-msg .when{font-size:11.5px; opacity:0.8; margin-top:8px; font-family:'Space Mono',monospace;}
+.coach-msg .dismiss{position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.2); border:none; color:white; border-radius:100px; padding:4px 10px; font-size:11px; cursor:pointer; font-weight:600; font-family:inherit;}
+.coach-msg.unread::before{
+  content:""; position:absolute; top:14px; left:-6px; width:12px; height:12px;
+  border-radius:50%; background:var(--coral); border:3px solid var(--paper); box-shadow:0 0 0 2px var(--coral);
 }
+.coach-msg + .coach-msg{margin-top:-6px;}
+
+/* Day strip */
+.day-strip{display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:4px 2px 12px; margin-bottom:8px;}
+.day-chip{flex-shrink:0; font-family:'Space Mono',monospace; font-size:12px; padding:10px 14px; border-radius:11px; border:1.5px solid var(--taupe); background:var(--card); color:var(--ink-soft); cursor:pointer; white-space:nowrap; min-height:40px; display:inline-flex; align-items:center;}
 .day-chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
 .day-chip.has-data::after{content:" •"; color:var(--emerald);}
 .day-chip.active.has-data::after{color:#7FD9BE;}
 
-/* ===== Layout ===== */
-.layout{display:grid; grid-template-columns: 280px 1fr; gap:20px; align-items:start;}
-@media (max-width: 760px){ .layout{grid-template-columns: 1fr;} }
-
+/* Layout */
+.layout{display:grid; grid-template-columns:280px 1fr; gap:20px; align-items:start;}
+@media (max-width:760px){ .layout{grid-template-columns:1fr;} }
 .sidebar{display:flex; flex-direction:column; gap:16px;}
-
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:18px;
-  box-shadow:var(--shadow);
-}
+.card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);}
 @media (min-width:600px){ .card{padding:20px;} }
 .card h2{font-size:16px; margin-bottom:14px;}
-.card h2 .eyebrow{display:block; margin-bottom:4px;}
 
-/* avatar card */
+/* Avatar */
 .avatar-card{text-align:center;}
-.avatar-stage{
-  width:100%;
-  aspect-ratio:1/1;
-  max-width:200px;
-  margin:0 auto;
-  display:flex; align-items:center; justify-content:center;
-  margin-bottom:12px;
-}
-.avatar-name{font-family:'Fraunces', serif; font-size:18px; margin-bottom:2px;}
+.avatar-stage{width:100%; aspect-ratio:1/1; max-width:200px; margin:0 auto 12px; display:flex; align-items:center; justify-content:center;}
+.avatar-name{font-family:'Fraunces',serif; font-size:18px; margin-bottom:2px;}
 .avatar-status{font-size:13px; color:var(--ink-soft); margin-bottom:14px;}
-.streak-row{
-  display:flex; justify-content:space-between; align-items:center;
-  background:var(--peach); border-radius:12px; padding:10px 14px;
-  margin-bottom:8px;
-}
-.streak-row .num{font-family:'Fraunces', serif; font-size:22px; color:var(--coral);}
+.streak-row{display:flex; justify-content:space-between; align-items:center; background:var(--peach); border-radius:12px; padding:10px 14px; margin-bottom:8px;}
+.streak-row .num{font-family:'Fraunces',serif; font-size:22px; color:var(--coral);}
 .streak-row .label{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; font-weight:700;}
 .badges{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px;}
-.badge{
-  font-size:11px; font-weight:700; padding:5px 10px; border-radius:100px;
-  background:var(--emerald-soft); color:var(--emerald);
-}
+.badge{font-size:11px; font-weight:700; padding:5px 10px; border-radius:100px; background:var(--emerald-soft); color:var(--emerald);}
 
-/* form sections */
-.section{margin-bottom:20px;}
+/* Mood picker */
+.mood-picker{display:flex; gap:6px; justify-content:space-between; margin-top:8px;}
+.mood-btn{flex:1; font-size:24px; padding:8px 4px; border-radius:12px; border:1.5px solid transparent; background:var(--peach); cursor:pointer; transition:all .15s ease;}
+.mood-btn:hover{border-color:var(--coral);}
+.mood-btn.active{background:var(--coral); border-color:var(--coral); transform:scale(1.05);}
+
+/* Weekly recap */
+.recap-card{background:linear-gradient(135deg, var(--peach) 0%, var(--peach-deep) 100%); border-radius:var(--radius); padding:18px;}
+.recap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px;}
+.recap-item{background:rgba(255,255,255,0.6); border-radius:12px; padding:10px 8px; text-align:center;}
+.recap-item .v{font-family:'Fraunces',serif; font-size:20px; color:var(--ink);}
+.recap-item .l{font-size:10.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em; font-weight:700; margin-top:2px;}
+
+/* Daily quote */
+.quote{font-family:'Fraunces',serif; font-style:italic; font-size:15px; line-height:1.5; color:var(--emerald); text-align:center; padding:12px 4px;}
+
+/* Form sections */
+.section{margin-bottom:18px;}
 .section-head{display:flex; align-items:center; gap:8px; margin-bottom:12px;}
 .section-head h2{flex:1;}
-
 .field-row{display:flex; flex-direction:column; gap:6px; margin-bottom:14px;}
 .field-row label{font-size:13px; font-weight:600; color:var(--ink-soft);}
-textarea, select, input[type=time], input[type=number], input[type=text].full{
-  font-family:inherit; font-size:16px;
-  padding:12px 14px; border-radius:11px;
-  border:1.5px solid var(--taupe); background:var(--paper); color:var(--ink);
-  outline:none; width:100%; resize:vertical;
-  min-height:44px;
-}
+textarea, select, input[type=time], input[type=number], input[type=text].full{font-family:inherit; font-size:16px; padding:12px 14px; border-radius:11px; border:1.5px solid var(--taupe); background:var(--paper); color:var(--ink); outline:none; width:100%; resize:vertical; min-height:44px;}
 textarea{min-height:64px;}
 textarea:focus, select:focus, input:focus{border-color:var(--coral);}
 
 .slider-row{display:flex; flex-direction:column; gap:6px; margin-bottom:14px;}
 .slider-row .slider-label{display:flex; justify-content:space-between; font-size:13px; font-weight:600; color:var(--ink-soft);}
 .slider-row .slider-label .val{font-family:'Space Mono'; color:var(--coral); font-weight:700;}
-input[type=range]{
-  -webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:100px;
-  background:var(--taupe); outline:none; padding:0; min-height:auto;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none; width:26px; height:26px; border-radius:50%;
-  background:var(--coral); cursor:pointer; border:3px solid white; box-shadow:0 1px 4px rgba(0,0,0,0.2);
-}
-input[type=range]::-moz-range-thumb{
-  width:26px; height:26px; border-radius:50%; background:var(--coral); cursor:pointer; border:3px solid white;
-}
+input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:100px; background:var(--taupe); outline:none; padding:0; min-height:auto;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:var(--coral); cursor:pointer; border:3px solid white; box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+input[type=range]::-moz-range-thumb{width:26px; height:26px; border-radius:50%; background:var(--coral); cursor:pointer; border:3px solid white;}
 
-/* meal cards */
-.meal-card{
-  border:1.5px solid var(--taupe); border-radius:14px; padding:14px; margin-bottom:12px; position:relative;
-  background:var(--paper);
-}
+/* Meal cards */
+.meal-card{border:1.5px solid var(--taupe); border-radius:14px; padding:14px; margin-bottom:12px; background:var(--paper);}
 @media (min-width:600px){ .meal-card{padding:16px;} }
 .meal-card .meal-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
 .meal-card .meal-title{font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px;}
-.meal-num{
-  width:24px;height:24px;border-radius:50%;background:var(--coral);color:white;
-  display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Space Mono';font-weight:700;
-}
-.remove-meal{
-  background:none; border:none; color:var(--ink-soft); cursor:pointer; font-size:13px; font-weight:600; padding:6px 8px;
-}
+.meal-num{width:24px;height:24px;border-radius:50%;background:var(--coral);color:white; display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Space Mono';font-weight:700;}
+.remove-meal{background:none; border:none; color:var(--ink-soft); cursor:pointer; font-size:13px; font-weight:600; padding:6px 8px;}
 .remove-meal:hover{color:var(--coral-deep);}
 .meal-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
 @media (max-width:520px){ .meal-grid{grid-template-columns:1fr;} }
-.photo-upload{
-  border:1.5px dashed var(--taupe); border-radius:12px; padding:14px; text-align:center;
-  cursor:pointer; color:var(--ink-soft); font-size:13px; font-weight:600; margin-top:10px;
-  display:flex; align-items:center; justify-content:center; gap:8px; flex-direction:column;
-}
+.photo-upload{border:1.5px dashed var(--taupe); border-radius:12px; padding:14px; text-align:center; cursor:pointer; color:var(--ink-soft); font-size:13px; font-weight:600; margin-top:10px; display:flex; align-items:center; justify-content:center; gap:8px; flex-direction:column;}
 .photo-upload img{max-width:100%; max-height:200px; border-radius:10px; margin-top:6px;}
 .photo-upload input{display:none;}
+.add-meal-btn{width:100%; padding:14px; border-radius:14px; border:1.5px dashed var(--coral); background:var(--peach); color:var(--coral-deep); font-weight:700; font-size:14px; cursor:pointer; font-family:inherit; min-height:48px;}
 
-.add-meal-btn{
-  width:100%; padding:14px; border-radius:14px; border:1.5px dashed var(--coral); background:var(--peach);
-  color:var(--coral-deep); font-weight:700; font-size:14px; cursor:pointer; font-family:inherit;
-  min-height:48px;
-}
+/* Hydration glasses */
+.hydra-glasses{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+.hydra-glass{font-size:24px; cursor:pointer; opacity:0.35; transition:all .15s ease; user-select:none; padding:4px;}
+.hydra-glass.filled{opacity:1; transform:scale(1.05);}
 
 .check-row{display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;}
 .check-row input[type=checkbox]{width:22px; height:22px; accent-color:var(--coral); flex-shrink:0;}
@@ -300,26 +176,21 @@ input[type=range]::-moz-range-thumb{
 .two-col{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
 @media (max-width:520px){ .two-col{grid-template-columns:1fr;} }
 
-.save-bar{ margin-top:8px; position:sticky; bottom:calc(8px + var(--safe-bottom)); z-index:5; }
-.save-btn{width:100%; padding:16px; font-size:16px; border-radius:14px; box-shadow:0 8px 24px rgba(232,84,46,0.25);}
-.save-confirm{
-  text-align:center; font-size:13px; color:var(--emerald); font-weight:700; margin-top:8px; opacity:0; transition:opacity .3s;
-}
+.save-bar{margin-top:8px; position:sticky; bottom:calc(8px + var(--safe-bottom)); z-index:5;}
+.save-btn{width:100%; padding:16px; font-size:16px; border-radius:14px; box-shadow:0 8px 24px rgba(232,84,46,0.3);}
+.save-confirm{text-align:center; font-size:13px; color:var(--emerald); font-weight:700; margin-top:8px; opacity:0; transition:opacity .3s;}
 .save-confirm.show{opacity:1;}
 
-/* ===== Coach dashboard ===== */
+/* Coach dashboard */
 .coach-clients{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
-.client-chip{
-  padding:10px 16px; border-radius:100px; border:1.5px solid var(--taupe); background:var(--card);
-  cursor:pointer; font-weight:600; font-size:14px; color:var(--ink-soft); min-height:40px;
-}
+.client-chip{padding:10px 16px; border-radius:100px; border:1.5px solid var(--taupe); background:var(--card); cursor:pointer; font-weight:600; font-size:14px; color:var(--ink-soft); min-height:40px; display:inline-flex; align-items:center; gap:6px;}
 .client-chip.active{background:var(--emerald); border-color:var(--emerald); color:white;}
 
 .stat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px;}
 @media (max-width:760px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
 .stat-card{background:var(--card); border-radius:14px; padding:14px; box-shadow:var(--shadow);}
 .stat-card .eyebrow{margin-bottom:6px;}
-.stat-card .stat-val{font-family:'Fraunces', serif; font-size:24px;}
+.stat-card .stat-val{font-family:'Fraunces',serif; font-size:24px;}
 .stat-card .stat-sub{font-size:12px; color:var(--ink-soft); margin-top:2px;}
 
 .chart-card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin-bottom:20px;}
@@ -346,33 +217,39 @@ svg.chart{width:100%; height:auto; overflow:visible;}
 .info-item .eyebrow{margin-bottom:4px; color:var(--emerald);}
 .info-item .v{font-size:14px; font-weight:600; word-wrap:break-word;}
 
-.empty-state{
-  text-align:center; padding:60px 20px; color:var(--ink-soft);
-}
+.empty-state{text-align:center; padding:60px 20px; color:var(--ink-soft);}
 .empty-state h3{color:var(--ink); margin-bottom:8px; font-size:18px;}
 
 .coach-day-strip{display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:4px 2px 16px;}
 
-/* ===== Loading & toast ===== */
-.loader{
-  display:flex; align-items:center; justify-content:center; min-height:60vh;
-  color:var(--ink-soft); font-size:14px; gap:10px;
-}
+/* Coach message composer */
+.composer{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin-bottom:16px;}
+.composer textarea{margin-bottom:10px;}
+.composer-actions{display:flex; gap:8px; justify-content:flex-end;}
+
+/* Loader / toast */
+.loader{display:flex; align-items:center; justify-content:center; min-height:60vh; color:var(--ink-soft); font-size:14px; gap:10px;}
 .spinner{width:18px; height:18px; border:2.5px solid var(--peach); border-top-color:var(--coral); border-radius:50%; animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-.toast{
-  position:fixed; left:50%; bottom:calc(20px + var(--safe-bottom)); transform:translateX(-50%);
-  background:var(--ink); color:var(--paper); padding:12px 18px; border-radius:100px;
-  font-size:13px; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,0.2);
-  opacity:0; pointer-events:none; transition:opacity .25s; z-index:1000;
-  max-width:calc(100% - 40px); text-align:center;
-}
+.toast{position:fixed; left:50%; bottom:calc(20px + var(--safe-bottom)); transform:translateX(-50%); background:var(--ink); color:var(--paper); padding:12px 18px; border-radius:100px; font-size:13px; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,0.2); opacity:0; pointer-events:none; transition:opacity .25s; z-index:1000; max-width:calc(100% - 40px); text-align:center;}
 .toast.show{opacity:1;}
+.toast.success{background:var(--emerald);}
+.toast.error{background:var(--coral-deep);}
 
-@media (prefers-reduced-motion: reduce){
-  *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+/* Confetti */
+.confetti{position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:999;}
+
+/* Install prompt */
+.install-prompt{
+  position:fixed; bottom:calc(20px + var(--safe-bottom)); left:50%; transform:translateX(-50%);
+  background:var(--ink); color:var(--paper); padding:12px 16px; border-radius:14px;
+  display:flex; gap:12px; align-items:center; z-index:100; box-shadow:0 8px 24px rgba(0,0,0,0.2);
+  max-width:calc(100% - 40px); font-size:13px;
 }
+.install-prompt button{background:var(--coral); color:white; border:none; padding:8px 14px; border-radius:100px; font-weight:700; font-family:inherit; cursor:pointer;}
+.install-prompt .close{background:transparent; color:var(--paper); padding:4px 8px;}
+
+@media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
 </style>
 </head>
 <body>
@@ -380,52 +257,22 @@ svg.chart{width:100%; height:auto; overflow:visible;}
 <div id="root"><div class="loader"><div class="spinner"></div> Chargement…</div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<!-- Supabase JS (UMD) -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-
 <script>
 // ======================= CONFIG =======================
-const SUPABASE_URL = "https://rjfqxdmyrjwviijicnlu.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqZnF4ZG15cmp3dmlpamljbmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NzQ3NzcsImV4cCI6MjA5NzQ1MDc3N30.aqtirCWg3HGbZDv0d0xFJx3xPRTTwV7vMwfumGY4JdY";
-// Code que la coach saisit pour accéder au dashboard. À adapter avant déploiement.
-const COACH_CODE = "sahar-coach";
+const API_URL = "https://rjfqxdmyrjwviijicnlu.supabase.co/functions/v1/api";
+const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqZnF4ZG15cmp3dmlpamljbmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NzQ3NzcsImV4cCI6MjA5NzQ1MDc3N30.aqtirCWg3HGbZDv0d0xFJx3xPRTTwV7vMwfumGY4JdY";
 
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: { persistSession: false }
-});
-
-// ======================= STORAGE =======================
-function normalizeName(n){ return (n||'').trim(); }
-function nameKey(n){ return normalizeName(n).toLowerCase(); }
-
-async function listClients(){
-  const { data, error } = await sb.from('clients').select('name').order('created_at', { ascending:true });
-  if(error){ console.error(error); return []; }
-  return data.map(r=>r.name);
-}
-async function registerClient(name){
-  name = normalizeName(name);
-  if(!name) return;
-  const { error } = await sb.from('clients').upsert({ name }, { onConflict: 'name', ignoreDuplicates: true });
-  if(error) console.error(error);
-}
-async function loadDay(name, iso){
-  const { data, error } = await sb.from('day_entries').select('data').eq('client_name', name).eq('date', iso).maybeSingle();
-  if(error){ console.error(error); return emptyDay(iso); }
-  return data ? data.data : emptyDay(iso);
-}
-async function loadAllDays(name){
-  const { data, error } = await sb.from('day_entries').select('date, data').eq('client_name', name).order('date', { ascending:true });
-  if(error){ console.error(error); return []; }
-  return (data||[]).map(r=>r.data);
-}
-async function saveDay(name, dayObj){
-  const { error } = await sb.from('day_entries').upsert({
-    client_name: name,
-    date: dayObj.date,
-    data: dayObj,
-  }, { onConflict: 'client_name,date' });
-  if(error){ console.error(error); throw error; }
+// ======================= API CLIENT =======================
+async function api(action, params){
+  const res = await fetch(API_URL, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json', 'apikey': API_KEY, 'Authorization':`Bearer ${API_KEY}` },
+    body: JSON.stringify({ action, ...(params||{}) }),
+  });
+  let data = null;
+  try{ data = await res.json(); }catch(e){}
+  if(!res.ok){ throw new Error(data?.error || `HTTP ${res.status}`); }
+  return data;
 }
 
 // ======================= UTILS =======================
@@ -441,8 +288,7 @@ function isoToFr(iso){
 }
 function dayLabel(iso){
   const d = new Date(iso+'T12:00:00');
-  const days = ['dim','lun','mar','mer','jeu','ven','sam'];
-  return days[d.getDay()];
+  return ['dim','lun','mar','mer','jeu','ven','sam'][d.getDay()];
 }
 function isoWeekNumber(iso){
   const d = new Date(iso+'T12:00:00');
@@ -450,35 +296,36 @@ function isoWeekNumber(iso){
   return Math.ceil((((d - onejan) / 86400000) + onejan.getDay()+1)/7);
 }
 function uid(){ return Math.random().toString(36).slice(2,9); }
-
+function timeAgo(iso){
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff/60000);
+  if(m<1) return 'à l\'instant';
+  if(m<60) return `il y a ${m} min`;
+  const h = Math.floor(m/60);
+  if(h<24) return `il y a ${h} h`;
+  const d = Math.floor(h/24);
+  return `il y a ${d} j`;
+}
 function emptyDay(iso){
   return {
-    date: iso,
-    meals: [],
-    activity: '',
-    steps: '',
-    stress_level: 5,
-    stress_type: 'positif',
-    stress_note: '',
-    hydration: '',
+    date: iso, meals: [], activity: '', steps: '',
+    stress_level: 5, stress_type: 'positif', stress_note: '',
+    hydration: '', hydration_glasses: 0, mood: '',
     audio: { hypnose_matin:false, hypnose_matin_h:'', journal:false, journal_h:'', hypnose_soir:false, hypnose_soir_h:'', sophro:false, sophro_h:'' },
     sleep: { coucher:'', reveil:'' },
     waist_value: '',
   };
 }
-function emptyMeal(){
-  return { id: uid(), time:'', faim:5, mastication:5, plaisir:5, desc:'', photo:'' };
-}
+function emptyMeal(){ return { id: uid(), time:'', faim:5, mastication:5, plaisir:5, desc:'', photo:'' }; }
 
-function showToast(msg){
+function showToast(msg, type){
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.classList.add('show');
+  t.className = `toast show ${type||''}`;
   clearTimeout(showToast._tid);
-  showToast._tid = setTimeout(()=>t.classList.remove('show'), 2200);
+  showToast._tid = setTimeout(()=>t.className='toast', 2500);
 }
 
-// Compress images so we don't blow up JSONB rows.
 async function fileToCompressedDataURL(file, maxDim=1280, quality=0.78){
   return new Promise((resolve, reject)=>{
     const reader = new FileReader();
@@ -488,93 +335,54 @@ async function fileToCompressedDataURL(file, maxDim=1280, quality=0.78){
         let { width, height } = img;
         if(width > maxDim || height > maxDim){
           const ratio = Math.min(maxDim/width, maxDim/height);
-          width = Math.round(width*ratio);
-          height = Math.round(height*ratio);
+          width = Math.round(width*ratio); height = Math.round(height*ratio);
         }
         const canvas = document.createElement('canvas');
         canvas.width = width; canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
         resolve(canvas.toDataURL('image/jpeg', quality));
       };
-      img.onerror = reject;
-      img.src = reader.result;
+      img.onerror = reject; img.src = reader.result;
     };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+    reader.onerror = reject; reader.readAsDataURL(file);
   });
 }
 
-// ======================= AVATAR SVG =======================
+// ======================= AVATAR =======================
 function avatarSVG(stage, mood, size){
   size = size || 160;
-  const body = '#E8542E';
-  const bodyShade = '#C8401D';
-  const cheeks = '#F7B89D';
-  const limb = '#E8542E';
-  const groundColor = '#EFD3BC';
-  const groundDark = '#D9B292';
-  let leftArm, rightArm, bodyTilt = 0, eyes, mouth;
-  if(mood === 'happy'){
-    leftArm  = `<path d="M62,98 C48,90 40,78 38,66" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    rightArm = `<path d="M98,98 C112,90 120,78 122,66" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    eyes = `<path d="M62,90 Q67,84 72,90" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-            <path d="M88,90 Q93,84 98,90" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
-    mouth = `<path d="M68,103 Q80,114 92,103" stroke="#2B2622" stroke-width="3.4" fill="none" stroke-linecap="round"/>`;
-  } else if(mood === 'low'){
-    bodyTilt = -6;
-    leftArm  = `<path d="M60,102 C52,112 49,122 50,130" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    rightArm = `<path d="M100,102 C106,110 108,118 107,126" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    eyes = `<circle cx="65" cy="90" r="3.4" fill="#2B2622"/><circle cx="95" cy="90" r="3.4" fill="#2B2622"/>`;
-    mouth = `<path d="M69,108 Q80,102 91,108" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
+  const body='#E8542E', bodyShade='#C8401D', cheeks='#F7B89D', limb='#E8542E', groundColor='#EFD3BC', groundDark='#D9B292';
+  let leftArm, rightArm, bodyTilt=0, eyes, mouth;
+  if(mood==='happy'){
+    leftArm=`<path d="M62,98 C48,90 40,78 38,66" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    rightArm=`<path d="M98,98 C112,90 120,78 122,66" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    eyes=`<path d="M62,90 Q67,84 72,90" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M88,90 Q93,84 98,90" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
+    mouth=`<path d="M68,103 Q80,114 92,103" stroke="#2B2622" stroke-width="3.4" fill="none" stroke-linecap="round"/>`;
+  } else if(mood==='low'){
+    bodyTilt=-6;
+    leftArm=`<path d="M60,102 C52,112 49,122 50,130" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    rightArm=`<path d="M100,102 C106,110 108,118 107,126" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    eyes=`<circle cx="65" cy="90" r="3.4" fill="#2B2622"/><circle cx="95" cy="90" r="3.4" fill="#2B2622"/>`;
+    mouth=`<path d="M69,108 Q80,102 91,108" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
   } else {
-    leftArm  = `<path d="M62,99 C52,104 46,110 44,118" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    rightArm = `<path d="M98,99 C108,104 114,110 116,118" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
-    eyes = `<circle cx="65" cy="89" r="3.6" fill="#2B2622"/><circle cx="95" cy="89" r="3.6" fill="#2B2622"/>`;
-    mouth = `<path d="M70,104 Q80,110 90,104" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
+    leftArm=`<path d="M62,99 C52,104 46,110 44,118" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    rightArm=`<path d="M98,99 C108,104 114,110 116,118" stroke="${limb}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+    eyes=`<circle cx="65" cy="89" r="3.6" fill="#2B2622"/><circle cx="95" cy="89" r="3.6" fill="#2B2622"/>`;
+    mouth=`<path d="M70,104 Q80,110 90,104" stroke="#2B2622" stroke-width="3.2" fill="none" stroke-linecap="round"/>`;
   }
-  const legs = `
-    <path d="M70,138 L66,156" stroke="${limb}" stroke-width="11" fill="none" stroke-linecap="round"/>
-    <path d="M90,138 L94,156" stroke="${limb}" stroke-width="11" fill="none" stroke-linecap="round"/>
-  `;
-  let accessory = '';
-  if(stage === 0){ accessory = ''; }
-  else if(stage === 1){ accessory = `<path d="M78,57 q9,-9 15,-1 q-7,7 -15,1 Z" fill="#1F6F5C"/>`; }
-  else if(stage === 2){
-    accessory = `<path d="M57,63 Q80,36 103,63 L100,70 L60,70 Z" fill="#1F6F5C"/>
-                 <circle cx="80" cy="38" r="5" fill="#F5E6D8"/>`;
-  } else if(stage === 3){
-    accessory = `<path d="M57,63 Q80,36 103,63 L100,70 L60,70 Z" fill="#1F6F5C"/>
-                 <circle cx="80" cy="38" r="5" fill="#F5E6D8"/>
-                 <path d="M56,96 Q80,106 104,96 L103,106 Q80,116 57,106 Z" fill="#1F6F5C"/>
-                 <path d="M68,103 L63,122 L75,119 Z" fill="#1F6F5C"/>`;
-  } else {
-    accessory = `<path d="M56,96 Q80,106 104,96 L103,106 Q80,116 57,106 Z" fill="#1F6F5C"/>
-                 <path d="M68,103 L63,122 L75,119 Z" fill="#1F6F5C"/>
-                 <g>
-                   <circle cx="58" cy="62" r="6.5" fill="#1F6F5C"/>
-                   <circle cx="72" cy="50" r="6.5" fill="#2B8A6F"/>
-                   <circle cx="88" cy="50" r="6.5" fill="#1F6F5C"/>
-                   <circle cx="102" cy="62" r="6.5" fill="#2B8A6F"/>
-                   <circle cx="58" cy="62" r="3" fill="#F5E6D8"/>
-                   <circle cx="72" cy="50" r="3" fill="#F5E6D8"/>
-                   <circle cx="88" cy="50" r="3" fill="#F5E6D8"/>
-                   <circle cx="102" cy="62" r="3" fill="#F5E6D8"/>
-                 </g>`;
-  }
-  return `
-  <svg viewBox="0 0 160 180" width="${size}" height="${size*1.125}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  const legs=`<path d="M70,138 L66,156" stroke="${limb}" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M90,138 L94,156" stroke="${limb}" stroke-width="11" fill="none" stroke-linecap="round"/>`;
+  let accessory='';
+  if(stage===1) accessory=`<path d="M78,57 q9,-9 15,-1 q-7,7 -15,1 Z" fill="#1F6F5C"/>`;
+  else if(stage===2) accessory=`<path d="M57,63 Q80,36 103,63 L100,70 L60,70 Z" fill="#1F6F5C"/><circle cx="80" cy="38" r="5" fill="#F5E6D8"/>`;
+  else if(stage===3) accessory=`<path d="M57,63 Q80,36 103,63 L100,70 L60,70 Z" fill="#1F6F5C"/><circle cx="80" cy="38" r="5" fill="#F5E6D8"/><path d="M56,96 Q80,106 104,96 L103,106 Q80,116 57,106 Z" fill="#1F6F5C"/><path d="M68,103 L63,122 L75,119 Z" fill="#1F6F5C"/>`;
+  else if(stage>=4) accessory=`<path d="M56,96 Q80,106 104,96 L103,106 Q80,116 57,106 Z" fill="#1F6F5C"/><path d="M68,103 L63,122 L75,119 Z" fill="#1F6F5C"/><g><circle cx="58" cy="62" r="6.5" fill="#1F6F5C"/><circle cx="72" cy="50" r="6.5" fill="#2B8A6F"/><circle cx="88" cy="50" r="6.5" fill="#1F6F5C"/><circle cx="102" cy="62" r="6.5" fill="#2B8A6F"/><circle cx="58" cy="62" r="3" fill="#F5E6D8"/><circle cx="72" cy="50" r="3" fill="#F5E6D8"/><circle cx="88" cy="50" r="3" fill="#F5E6D8"/><circle cx="102" cy="62" r="3" fill="#F5E6D8"/></g>`;
+  return `<svg viewBox="0 0 160 180" width="${size}" height="${size*1.125}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <g transform="rotate(${bodyTilt} 80 110)">
-      ${legs}
-      ${leftArm}
-      ${rightArm}
+      ${legs}${leftArm}${rightArm}
       <ellipse cx="80" cy="100" rx="30" ry="34" fill="${body}"/>
       <ellipse cx="80" cy="100" rx="30" ry="34" fill="none" stroke="${bodyShade}" stroke-width="1.5" opacity="0.25"/>
-      <circle cx="66" cy="96" r="4.5" fill="${cheeks}" opacity="0.7"/>
-      <circle cx="94" cy="96" r="4.5" fill="${cheeks}" opacity="0.7"/>
-      ${eyes}
-      ${mouth}
-      ${accessory}
+      <circle cx="66" cy="96" r="4.5" fill="${cheeks}" opacity="0.7"/><circle cx="94" cy="96" r="4.5" fill="${cheeks}" opacity="0.7"/>
+      ${eyes}${mouth}${accessory}
     </g>
     <ellipse cx="80" cy="166" rx="34" ry="6" fill="${groundColor}"/>
     <ellipse cx="80" cy="166" rx="34" ry="6" fill="none" stroke="${groundDark}" stroke-width="1" opacity="0.4"/>
@@ -582,86 +390,149 @@ function avatarSVG(stage, mood, size){
 }
 
 function computeStage(entries){
-  const filled = entries.filter(d => d.meals.length>0 || d.steps || d.waist_value);
+  const filled = entries.filter(d=> d.meals.length>0 || d.steps || d.waist_value);
   const n = filled.length;
-  if(n === 0) return 0;
-  if(n < 3) return 1;
-  if(n < 7) return 2;
-  if(n < 14) return 3;
-  return 4;
+  if(n===0) return 0; if(n<3) return 1; if(n<7) return 2; if(n<14) return 3; return 4;
 }
 function computeMood(entries){
-  if(entries.length === 0) return 'neutral';
+  if(entries.length===0) return 'neutral';
   const recent = entries.slice(-3);
-  let sumPlaisir=0, cnt=0, sumStress=0, scnt=0;
+  let sumP=0,cP=0,sumS=0,cS=0;
   recent.forEach(d=>{
-    d.meals.forEach(m=>{ sumPlaisir += Number(m.plaisir||0); cnt++; });
-    if(d.stress_level !== undefined && d.stress_level !== null && d.stress_level !== ''){ sumStress += Number(d.stress_level); scnt++; }
+    d.meals.forEach(m=>{ sumP+=Number(m.plaisir||0); cP++; });
+    if(d.stress_level!==undefined && d.stress_level!=='') { sumS+=Number(d.stress_level); cS++; }
   });
-  const avgPlaisir = cnt? sumPlaisir/cnt : 5;
-  const avgStress = scnt? sumStress/scnt : 5;
-  if(avgPlaisir >= 6.5 && avgStress <= 6) return 'happy';
-  if(avgPlaisir <= 4 || avgStress >= 8) return 'low';
+  const avgP = cP? sumP/cP : 5;
+  const avgS = cS? sumS/cS : 5;
+  if(avgP>=6.5 && avgS<=6) return 'happy';
+  if(avgP<=4 || avgS>=8) return 'low';
   return 'neutral';
 }
 function computeStreak(entries){
   const map = {};
-  entries.forEach(d=>{ if(d.meals.length>0 || d.steps || d.hydration) map[d.date]=true; });
-  let streak=0;
-  let cur = new Date();
+  entries.forEach(d=>{ if(d.meals.length>0 || d.steps || d.hydration || d.hydration_glasses) map[d.date]=true; });
+  let streak=0, cur=new Date();
   while(true){
     const tz = cur.getTimezoneOffset()*60000;
     const iso = new Date(cur - tz).toISOString().slice(0,10);
-    if(map[iso]){ streak++; cur.setDate(cur.getDate()-1); }
-    else break;
+    if(map[iso]){ streak++; cur.setDate(cur.getDate()-1); } else break;
   }
   return streak;
 }
 function computeBadges(entries){
-  const badges = [];
-  const streak = computeStreak(entries);
-  if(streak >= 3) badges.push('🔥 3 jours de suite');
-  if(streak >= 7) badges.push('⭐ 1 semaine complète');
-  if(entries.length >= 1 && entries.some(d=>d.audio && (d.audio.hypnose_matin||d.audio.journal||d.audio.hypnose_soir||d.audio.sophro))) badges.push('🌿 Rituel bien-être');
+  const badges=[]; const streak=computeStreak(entries);
+  if(streak>=3) badges.push('🔥 3 jours de suite');
+  if(streak>=7) badges.push('⭐ 1 semaine complète');
+  if(streak>=14) badges.push('💎 2 semaines pleines');
+  if(streak>=30) badges.push('👑 1 mois !');
+  if(entries.some(d=>d.audio && (d.audio.hypnose_matin||d.audio.journal||d.audio.hypnose_soir||d.audio.sophro))) badges.push('🌿 Rituel bien-être');
   const totalMeals = entries.reduce((a,d)=>a+d.meals.length,0);
-  if(totalMeals >= 10) badges.push('🍽️ 10 repas suivis');
-  if(totalMeals >= 30) badges.push('🍃 30 repas suivis');
+  if(totalMeals>=10) badges.push('🍽️ 10 repas suivis');
+  if(totalMeals>=30) badges.push('🍃 30 repas suivis');
+  if(totalMeals>=100) badges.push('🌟 100 repas !');
+  if(entries.some(d=>Number(d.hydration_glasses||0)>=8)) badges.push('💧 Hydratation au top');
   return badges;
 }
+function computeWeeklyRecap(entries){
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate()-7);
+  const last7 = entries.filter(d=> new Date(d.date+'T12:00:00') >= cutoff);
+  const totalMeals = last7.reduce((a,d)=>a+d.meals.length,0);
+  let totalGlasses=0, glassesDays=0;
+  last7.forEach(d=>{ const g=Number(d.hydration_glasses||0); if(g){ totalGlasses+=g; glassesDays++; } });
+  const avgGlasses = glassesDays? Math.round(totalGlasses/glassesDays*10)/10 : 0;
+  let totalSteps=0, stepsDays=0;
+  last7.forEach(d=>{ const s=Number(d.steps||0); if(s){ totalSteps+=s; stepsDays++; } });
+  const avgSteps = stepsDays? Math.round(totalSteps/stepsDays) : 0;
+  return { totalMeals, avgGlasses, avgSteps, daysActive: last7.length };
+}
+
+const QUOTES = [
+  "Chaque petit pas compte vers ton bien-être ✨",
+  "Tu es à exactement là où tu dois être 🌿",
+  "Prends soin de toi comme tu prendrais soin d'une amie 💛",
+  "La régularité bat la perfection — toujours 🌱",
+  "Respire. Tu fais déjà beaucoup. 💫",
+  "Ton corps t'écoute, écoute-le en retour 🌸",
+  "Aujourd'hui aussi, tu es exactement assez 🌟",
+  "Le progrès n'est pas une ligne droite, et c'est OK 🌊",
+];
+function todayQuote(name){
+  const d = new Date();
+  const idx = (d.getDate() + (name||'').length) % QUOTES.length;
+  return QUOTES[idx];
+}
+
+// Confetti
+function fireConfetti(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'confetti'; canvas.width = innerWidth; canvas.height = innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const colors = ['#E8542E','#1F6F5C','#D4A04C','#F5E6D8','#2B8A6F'];
+  const particles = [];
+  for(let i=0;i<80;i++){
+    particles.push({
+      x: innerWidth/2 + (Math.random()-0.5)*100,
+      y: innerHeight/2,
+      vx: (Math.random()-0.5)*10,
+      vy: -Math.random()*12 - 4,
+      g: 0.3,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      size: 4 + Math.random()*4,
+      rot: Math.random()*Math.PI*2,
+      vr: (Math.random()-0.5)*0.3,
+    });
+  }
+  let frame = 0;
+  const tick = ()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.color; ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*1.4);
+      ctx.restore();
+    });
+    frame++;
+    if(frame < 120) requestAnimationFrame(tick);
+    else canvas.remove();
+  };
+  tick();
+}
+
+const MOODS = ['😊','😌','😴','😟','😤'];
 
 // ======================= APP =======================
 const App = {
   root: document.getElementById('root'),
-  role: null,
-  clientName: null,
-  coachSelected: null,
-  currentDay: todayISO(),
+  role: null, token: null, clientName: null, coachSelected: null, currentDay: todayISO(),
+  dismissedMsgs: new Set(),
 
   init(){
-    const saved = sessionStorage.getItem('carnet_session');
+    const saved = sessionStorage.getItem('carnet_session_v2');
     if(saved){
       try{
         const s = JSON.parse(saved);
-        this.role = s.role; this.clientName = s.clientName || null; this.coachSelected = s.coachSelected || null;
+        this.role = s.role; this.token = s.token; this.clientName = s.clientName||null; this.coachSelected = s.coachSelected||null;
       }catch(e){}
     }
     this.render();
   },
-  persistSession(){
-    sessionStorage.setItem('carnet_session', JSON.stringify({
-      role: this.role, clientName: this.clientName, coachSelected: this.coachSelected
+  persist(){
+    sessionStorage.setItem('carnet_session_v2', JSON.stringify({
+      role:this.role, token:this.token, clientName:this.clientName, coachSelected:this.coachSelected
     }));
   },
   logout(){
-    sessionStorage.removeItem('carnet_session');
-    this.role = null; this.clientName = null; this.coachSelected = null;
+    sessionStorage.removeItem('carnet_session_v2');
+    this.role=null; this.token=null; this.clientName=null; this.coachSelected=null;
     this.render();
   },
 
   async render(){
-    if(!this.role){ this.renderGate(); return; }
-    if(this.role === 'client'){ await this.renderClient(); }
-    else { await this.renderCoach(); }
+    if(!this.role || !this.token){ this.renderGate(); return; }
+    if(this.role==='client') await this.renderClient();
+    else await this.renderCoach();
   },
 
   // ---------- GATE ----------
@@ -682,58 +553,63 @@ const App = {
       </div>
     </div>`;
     let mode = 'client';
-    const body = document.getElementById('gate-body');
-    const note = document.getElementById('gate-note');
     const errBox = document.getElementById('gate-error');
     const showErr = (m)=>{ errBox.textContent = m; errBox.classList.add('show'); };
     const clearErr = ()=> errBox.classList.remove('show');
+    const body = document.getElementById('gate-body');
+    const note = document.getElementById('gate-note');
 
     const renderBody = ()=>{
       document.getElementById('tab-client').classList.toggle('active', mode==='client');
       document.getElementById('tab-coach').classList.toggle('active', mode==='coach');
       clearErr();
-      if(mode === 'client'){
+      if(mode==='client'){
         body.innerHTML = `
           <form class="gate-form" id="client-form" autocomplete="on">
-            <input type="text" id="name-input" placeholder="Ton prénom (ex: Sahar)" autocapitalize="words" autocomplete="given-name" required />
+            <input type="text" id="name-input" placeholder="Ton prénom (ex: Sahar)" autocapitalize="words" autocomplete="username" required maxlength="40" />
+            <input type="tel" id="pin-input" placeholder="Ton code PIN (4 à 8 chiffres)" inputmode="numeric" pattern="[0-9]{4,8}" autocomplete="current-password" required maxlength="8" />
+            <div class="pin-help">🔒 À la 1ʳᵉ connexion, ton PIN sera enregistré. Garde-le secret.</div>
             <button class="btn btn-primary" id="enter-btn" type="submit">Entrer dans mon carnet</button>
           </form>`;
-        note.textContent = "Pas de mot de passe — entre simplement ton prénom pour retrouver ton suivi.";
+        note.textContent = "Ton prénom + un PIN à toi seule. C'est ce qui protège ton suivi.";
       } else {
         body.innerHTML = `
           <form class="gate-form" id="coach-form">
-            <input type="password" id="coach-code" placeholder="Code coach" autocomplete="current-password" required />
-            <button class="btn" type="submit" style="background:var(--emerald); color:white;">Voir le dashboard</button>
+            <input type="password" id="coach-pwd" placeholder="Mot de passe coach" autocomplete="current-password" required minlength="6" />
+            <button class="btn btn-emerald" type="submit">Voir le dashboard</button>
           </form>`;
-        note.textContent = "Le dashboard regroupe les données de toutes tes clientes.";
+        note.textContent = "Le mot de passe est à modifier après la première connexion.";
       }
-      attachHandlers();
+      attach();
     };
-    const attachHandlers = ()=>{
+    const attach = ()=>{
       document.getElementById('tab-client').onclick = ()=>{ mode='client'; renderBody(); };
       document.getElementById('tab-coach').onclick = ()=>{ mode='coach'; renderBody(); };
       if(mode==='client'){
         const form = document.getElementById('client-form');
-        const inp = document.getElementById('name-input');
         form.onsubmit = async (e)=>{
           e.preventDefault();
-          const name = normalizeName(inp.value);
-          if(!name){ inp.focus(); return; }
-          clearErr();
+          const name = document.getElementById('name-input').value.trim();
+          const pin = document.getElementById('pin-input').value.trim();
+          if(!name || !/^\d{4,8}$/.test(pin)){ showErr("Saisis ton prénom et un PIN à 4-8 chiffres."); return; }
+          const btn = document.getElementById('enter-btn');
+          btn.disabled = true; btn.textContent = 'Connexion…';
           try{
-            await registerClient(name);
-            this.role = 'client'; this.clientName = name; this.persistSession();
+            const r = await api('client.login', { name, pin });
+            this.role='client'; this.token=r.token; this.clientName=r.name; this.persist();
+            if(r.first_time){ showToast('Bienvenue ! Ton PIN est enregistré 🔒','success'); fireConfetti(); }
             this.render();
-          }catch(err){ showErr("Connexion impossible. Vérifie ta connexion internet."); }
+          }catch(err){ showErr(err.message||"Connexion impossible"); btn.disabled=false; btn.textContent='Entrer dans mon carnet'; }
         };
       } else {
         const form = document.getElementById('coach-form');
-        form.onsubmit = (e)=>{
+        form.onsubmit = async (e)=>{
           e.preventDefault();
-          const code = document.getElementById('coach-code').value.trim();
-          if(code !== COACH_CODE){ showErr("Code coach incorrect."); return; }
-          this.role = 'coach'; this.persistSession();
-          this.render();
+          const pwd = document.getElementById('coach-pwd').value;
+          try{
+            const r = await api('coach.login', { password: pwd });
+            this.role='coach'; this.token=r.token; this.persist(); this.render();
+          }catch(err){ showErr(err.message||"Mot de passe incorrect"); }
         };
       }
     };
@@ -742,13 +618,20 @@ const App = {
 
   // ---------- CLIENT VIEW ----------
   async renderClient(){
-    const name = this.clientName;
     this.root.innerHTML = `<div class="loader"><div class="spinner"></div> Chargement de ton carnet…</div>`;
-    let day, allDays;
+    let day, allDays, messages;
     try{
-      [day, allDays] = await Promise.all([ loadDay(name, this.currentDay), loadAllDays(name) ]);
+      const [dr, adr, mr] = await Promise.all([
+        api('client.load_day', { token:this.token, date:this.currentDay }),
+        api('client.load_all_days', { token:this.token }),
+        api('client.get_messages', { token:this.token }),
+      ]);
+      day = dr.day || emptyDay(this.currentDay);
+      allDays = adr.days || [];
+      messages = mr.messages || [];
     }catch(e){
-      this.root.innerHTML = `<div class="empty-state"><h3>Connexion impossible</h3><div>Vérifie ta connexion et réessaie.</div></div>`;
+      if((e.message||'').includes('autorisé')){ this.logout(); return; }
+      this.root.innerHTML = `<div class="empty-state"><h3>Connexion impossible</h3><div>Vérifie ta connexion et réessaie.</div><br><button class="pill-btn" onclick="App.logout()">Retour</button></div>`;
       return;
     }
     const iso = this.currentDay;
@@ -756,12 +639,13 @@ const App = {
     const mood = computeMood(allDays);
     const streak = computeStreak(allDays);
     const badges = computeBadges(allDays);
+    const recap = computeWeeklyRecap(allDays);
     const weekNum = isoWeekNumber(iso);
+    const unreadMsgs = messages.filter(m=> !m.read_at && !this.dismissedMsgs.has(m.id));
 
     const strip = [];
     for(let i=13; i>=0; i--){
-      const d = new Date();
-      d.setDate(d.getDate()-i);
+      const d = new Date(); d.setDate(d.getDate()-i);
       const tz = d.getTimezoneOffset()*60000;
       strip.push(new Date(d - tz).toISOString().slice(0,10));
     }
@@ -771,16 +655,25 @@ const App = {
     <div class="app">
       <div class="topbar">
         <div class="brand">
-          <div class="brand-seed">${avatarSVG(Math.min(stage,2), 'neutral', 34)}</div>
+          <div class="brand-seed">${avatarSVG(Math.min(stage,2),'neutral',34)}</div>
           <div class="brand-text">
             <h1>Carnet de Suivi</h1>
-            <div class="who">Bonjour ${escapeHtml(name)} 🌿</div>
+            <div class="who">Bonjour ${escapeHtml(this.clientName)} 🌿</div>
           </div>
         </div>
         <div class="topbar-actions">
-          <button class="pill-btn" id="logout-btn" type="button">Changer de profil</button>
+          <button class="pill-btn" id="logout-btn" type="button">Déconnexion</button>
         </div>
       </div>
+
+      ${unreadMsgs.map(m=>`
+        <div class="coach-msg unread" data-id="${m.id}">
+          <div class="from">Message de ta coach</div>
+          <div class="body">${escapeHtml(m.message)}</div>
+          <div class="when">${timeAgo(m.created_at)}</div>
+          <button class="dismiss" data-dismiss="${m.id}" type="button">Lu ✓</button>
+        </div>
+      `).join('')}
 
       <div class="day-strip" id="day-strip" role="tablist">
         ${strip.map(d=>`<button class="day-chip ${d===iso?'active':''} ${dataSet.has(d)?'has-data':''}" data-date="${d}" type="button">${dayLabel(d)} ${isoToFr(d)}</button>`).join('')}
@@ -797,16 +690,50 @@ const App = {
               <div><div class="num">${streak}</div><div class="label">jours de suite</div></div>
               <div style="font-size:28px;" aria-hidden="true">${streak>0?'🔥':'🌱'}</div>
             </div>
-            ${badges.length? `<div class="badges">${badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>` : ''}
+            ${badges.length? `<div class="badges">${badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>`:''}
+          </div>
+
+          <div class="recap-card">
+            <div class="eyebrow" style="color:var(--coral-deep);">Ta semaine</div>
+            <h2 style="font-size:16px; margin-top:4px;">Les 7 derniers jours</h2>
+            <div class="recap-grid">
+              <div class="recap-item"><div class="v">${recap.totalMeals}</div><div class="l">repas</div></div>
+              <div class="recap-item"><div class="v">${recap.avgGlasses||'–'}</div><div class="l">verres/j</div></div>
+              <div class="recap-item"><div class="v">${recap.avgSteps?Math.round(recap.avgSteps/1000)+'k':'–'}</div><div class="l">pas/j</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="quote">« ${todayQuote(this.clientName)} »</div>
           </div>
         </div>
 
         <div class="main">
           <div class="card section">
+            <div class="eyebrow">Humeur du jour</div>
+            <h2 style="margin:6px 0 12px;">Comment tu te sens ?</h2>
+            <div class="mood-picker" id="mood-picker">
+              ${MOODS.map(m=>`<button class="mood-btn ${day.mood===m?'active':''}" data-mood="${m}" type="button">${m}</button>`).join('')}
+            </div>
+          </div>
+
+          <div class="card section">
             <div class="section-head"><div class="eyebrow">Repas</div></div>
             <h2 style="margin-bottom:14px;">${isoToFr(iso)} — tes repas du jour</h2>
             <div id="meals-container"></div>
             <button class="add-meal-btn" id="add-meal-btn" type="button">+ Ajouter un repas</button>
+          </div>
+
+          <div class="card section">
+            <div class="eyebrow">Hydratation</div>
+            <h2 style="margin:6px 0 8px;">Eau, boissons, infusions</h2>
+            <div class="field-row">
+              <input type="text" class="full" id="hydration-input" placeholder="ex: 2 litres minimum" value="${escapeAttr(day.hydration||'')}">
+            </div>
+            <div style="font-size:13px; color:var(--ink-soft); font-weight:600;">Tes verres aujourd'hui (clique pour cocher)</div>
+            <div class="hydra-glasses" id="hydra-glasses">
+              ${[1,2,3,4,5,6,7,8].map(i=>`<span class="hydra-glass ${i<=(day.hydration_glasses||0)?'filled':''}" data-i="${i}" role="button" aria-label="${i} verres">💧</span>`).join('')}
+            </div>
           </div>
 
           <div class="card section">
@@ -826,79 +753,46 @@ const App = {
 
           <div class="card section">
             <div class="eyebrow">Stress du jour</div>
-            <h2 style="margin:6px 0 14px;">Comment tu te sens</h2>
+            <h2 style="margin:6px 0 14px;">Niveau et type</h2>
             <div class="slider-row">
-              <div class="slider-label"><span>Niveau de stress (0 tranquille — 10 très stressant)</span><span class="val" id="stress-val">${day.stress_level}</span></div>
+              <div class="slider-label"><span>Niveau (0 tranquille — 10 très stressant)</span><span class="val" id="stress-val">${day.stress_level}</span></div>
               <input type="range" min="0" max="10" id="stress-slider" value="${day.stress_level}">
             </div>
             <div class="field-row">
-              <label for="stress-type">Type de stress</label>
+              <label for="stress-type">Type</label>
               <select id="stress-type">
                 <option value="positif" ${day.stress_type==='positif'?'selected':''}>Positif</option>
                 <option value="negatif" ${day.stress_type==='negatif'?'selected':''}>Négatif</option>
               </select>
             </div>
             <div class="field-row">
-              <label for="stress-note">Précisions (optionnel)</label>
+              <label for="stress-note">Précisions</label>
               <textarea id="stress-note" rows="2" placeholder="ex: stress à cause de mon event du 24 juin">${escapeHtml(day.stress_note||'')}</textarea>
             </div>
           </div>
 
           <div class="card section">
-            <div class="eyebrow">Hydratation</div>
-            <h2 style="margin:6px 0 14px;">Eau, boissons, infusions</h2>
-            <div class="field-row">
-              <input type="text" class="full" id="hydration-input" placeholder="ex: 2 litres minimum" value="${escapeAttr(day.hydration||'')}">
-            </div>
-          </div>
-
-          <div class="card section">
             <div class="eyebrow">Rituel bien-être</div>
-            <h2 style="margin:6px 0 14px;">Audio, vidéo &amp; journaling</h2>
-            <div class="check-row">
-              <input type="checkbox" id="ck-hm" ${day.audio.hypnose_matin?'checked':''}>
-              <label for="ck-hm">Hypnose matin</label>
-              <input type="time" id="h-hm" value="${day.audio.hypnose_matin_h||''}" aria-label="Heure hypnose matin">
-            </div>
-            <div class="check-row">
-              <input type="checkbox" id="ck-j" ${day.audio.journal?'checked':''}>
-              <label for="ck-j">Journal &amp; gratitude</label>
-              <input type="time" id="h-j" value="${day.audio.journal_h||''}" aria-label="Heure journal">
-            </div>
-            <div class="check-row">
-              <input type="checkbox" id="ck-hs" ${day.audio.hypnose_soir?'checked':''}>
-              <label for="ck-hs">Hypnose soir</label>
-              <input type="time" id="h-hs" value="${day.audio.hypnose_soir_h||''}" aria-label="Heure hypnose soir">
-            </div>
-            <div class="check-row">
-              <input type="checkbox" id="ck-so" ${day.audio.sophro?'checked':''}>
-              <label for="ck-so">Sophrologie</label>
-              <input type="time" id="h-so" value="${day.audio.sophro_h||''}" aria-label="Heure sophrologie">
-            </div>
+            <h2 style="margin:6px 0 14px;">Audio, journaling, sophro</h2>
+            <div class="check-row"><input type="checkbox" id="ck-hm" ${day.audio.hypnose_matin?'checked':''}><label for="ck-hm">Hypnose matin</label><input type="time" id="h-hm" value="${day.audio.hypnose_matin_h||''}" aria-label="Heure"></div>
+            <div class="check-row"><input type="checkbox" id="ck-j" ${day.audio.journal?'checked':''}><label for="ck-j">Journal &amp; gratitude</label><input type="time" id="h-j" value="${day.audio.journal_h||''}" aria-label="Heure"></div>
+            <div class="check-row"><input type="checkbox" id="ck-hs" ${day.audio.hypnose_soir?'checked':''}><label for="ck-hs">Hypnose soir</label><input type="time" id="h-hs" value="${day.audio.hypnose_soir_h||''}" aria-label="Heure"></div>
+            <div class="check-row"><input type="checkbox" id="ck-so" ${day.audio.sophro?'checked':''}><label for="ck-so">Sophrologie</label><input type="time" id="h-so" value="${day.audio.sophro_h||''}" aria-label="Heure"></div>
           </div>
 
           <div class="card section">
             <div class="eyebrow">Sommeil</div>
             <h2 style="margin:6px 0 14px;">Dodo</h2>
             <div class="two-col">
-              <div class="field-row">
-                <label for="coucher-input">Heure du coucher</label>
-                <input type="time" id="coucher-input" value="${day.sleep.coucher||''}">
-              </div>
-              <div class="field-row">
-                <label for="reveil-input">Heure du réveil</label>
-                <input type="time" id="reveil-input" value="${day.sleep.reveil||''}">
-              </div>
+              <div class="field-row"><label for="coucher-input">Coucher</label><input type="time" id="coucher-input" value="${day.sleep.coucher||''}"></div>
+              <div class="field-row"><label for="reveil-input">Réveil</label><input type="time" id="reveil-input" value="${day.sleep.reveil||''}"></div>
             </div>
           </div>
 
           <div class="card section">
             <div class="eyebrow">Tour de taille — semaine ${weekNum}</div>
             <h2 style="margin:6px 0 14px;">Mesure de cette semaine</h2>
-            <div class="field-row">
-              <label for="waist-input">Tour de taille (cm)</label>
-              <input type="number" step="0.1" inputmode="decimal" id="waist-input" placeholder="ex: 78" value="${day.waist_value||''}">
-            </div>
+            <div class="field-row"><label for="waist-input">Tour de taille (cm)</label><input type="number" step="0.1" inputmode="decimal" id="waist-input" placeholder="ex: 78" value="${day.waist_value||''}"></div>
           </div>
 
           <div class="save-bar">
@@ -909,14 +803,11 @@ const App = {
       </div>
     </div>`;
 
+    // Meals
     const mealsContainer = document.getElementById('meals-container');
     let meals = day.meals.length ? day.meals.map(m=>({...m})) : [];
-
     const renderMeals = ()=>{
-      if(meals.length === 0){
-        mealsContainer.innerHTML = `<div style="color:var(--ink-soft); font-size:14px; padding:8px 0 16px;">Aucun repas ajouté encore — clique ci-dessous pour commencer.</div>`;
-        return;
-      }
+      if(meals.length===0){ mealsContainer.innerHTML = `<div style="color:var(--ink-soft); font-size:14px; padding:8px 0 16px;">Aucun repas ajouté — clique ci-dessous pour commencer.</div>`; return; }
       mealsContainer.innerHTML = meals.map((m,idx)=>`
         <div class="meal-card" data-idx="${idx}">
           <div class="meal-top">
@@ -924,129 +815,118 @@ const App = {
             <button class="remove-meal" data-remove="${idx}" type="button">Supprimer</button>
           </div>
           <div class="meal-grid">
-            <div class="field-row">
-              <label>Heure</label>
-              <input type="time" class="meal-time" data-idx="${idx}" value="${m.time||''}">
-            </div>
-            <div class="field-row">
-              <label>Description</label>
-              <input type="text" class="full meal-desc" data-idx="${idx}" placeholder="ce que tu as mangé..." value="${escapeAttr(m.desc||'')}">
-            </div>
+            <div class="field-row"><label>Heure</label><input type="time" class="meal-time" data-idx="${idx}" value="${m.time||''}"></div>
+            <div class="field-row"><label>Description</label><input type="text" class="full meal-desc" data-idx="${idx}" placeholder="ce que tu as mangé..." value="${escapeAttr(m.desc||'')}"></div>
           </div>
           <div class="meal-grid" style="margin-top:4px;">
-            <div class="slider-row" style="margin-bottom:6px;">
-              <div class="slider-label"><span>Degré de faim</span><span class="val meal-faim-val" data-idx="${idx}">${m.faim}</span></div>
-              <input type="range" min="0" max="10" class="meal-faim" data-idx="${idx}" value="${m.faim}">
-            </div>
-            <div class="slider-row" style="margin-bottom:6px;">
-              <div class="slider-label"><span>Degré de mastication</span><span class="val meal-mast-val" data-idx="${idx}">${m.mastication}</span></div>
-              <input type="range" min="0" max="10" class="meal-mast" data-idx="${idx}" value="${m.mastication}">
-            </div>
+            <div class="slider-row" style="margin-bottom:6px;"><div class="slider-label"><span>Faim</span><span class="val meal-faim-val" data-idx="${idx}">${m.faim}</span></div><input type="range" min="0" max="10" class="meal-faim" data-idx="${idx}" value="${m.faim}"></div>
+            <div class="slider-row" style="margin-bottom:6px;"><div class="slider-label"><span>Mastication</span><span class="val meal-mast-val" data-idx="${idx}">${m.mastication}</span></div><input type="range" min="0" max="10" class="meal-mast" data-idx="${idx}" value="${m.mastication}"></div>
           </div>
-          <div class="slider-row" style="margin-bottom:2px;">
-            <div class="slider-label"><span>Degré de plaisir</span><span class="val meal-plaisir-val" data-idx="${idx}">${m.plaisir}</span></div>
-            <input type="range" min="0" max="10" class="meal-plaisir" data-idx="${idx}" value="${m.plaisir}">
-          </div>
+          <div class="slider-row" style="margin-bottom:2px;"><div class="slider-label"><span>Plaisir</span><span class="val meal-plaisir-val" data-idx="${idx}">${m.plaisir}</span></div><input type="range" min="0" max="10" class="meal-plaisir" data-idx="${idx}" value="${m.plaisir}"></div>
           <label class="photo-upload" data-idx="${idx}">
-            ${m.photo ? `<img src="${m.photo}" alt="photo du repas ${idx+1}">` : `📷 Ajouter une photo`}
+            ${m.photo ? `<img src="${m.photo}" alt="photo repas ${idx+1}">` : `📷 Ajouter une photo`}
             <input type="file" accept="image/*" capture="environment" class="meal-photo-input" data-idx="${idx}">
           </label>
         </div>
       `).join('');
-
-      mealsContainer.querySelectorAll('.meal-time').forEach(el=>el.oninput = ()=>{ meals[el.dataset.idx].time = el.value; });
-      mealsContainer.querySelectorAll('.meal-desc').forEach(el=>el.oninput = ()=>{ meals[el.dataset.idx].desc = el.value; });
-      mealsContainer.querySelectorAll('.meal-faim').forEach(el=>el.oninput = ()=>{
-        meals[el.dataset.idx].faim = el.value;
-        mealsContainer.querySelector(`.meal-faim-val[data-idx="${el.dataset.idx}"]`).textContent = el.value;
-      });
-      mealsContainer.querySelectorAll('.meal-mast').forEach(el=>el.oninput = ()=>{
-        meals[el.dataset.idx].mastication = el.value;
-        mealsContainer.querySelector(`.meal-mast-val[data-idx="${el.dataset.idx}"]`).textContent = el.value;
-      });
-      mealsContainer.querySelectorAll('.meal-plaisir').forEach(el=>el.oninput = ()=>{
-        meals[el.dataset.idx].plaisir = el.value;
-        mealsContainer.querySelector(`.meal-plaisir-val[data-idx="${el.dataset.idx}"]`).textContent = el.value;
-      });
-      mealsContainer.querySelectorAll('.remove-meal').forEach(el=>el.onclick = ()=>{
-        meals.splice(Number(el.dataset.remove),1);
-        renderMeals();
-      });
-      mealsContainer.querySelectorAll('.meal-photo-input').forEach(el=>el.onchange = async (e)=>{
-        const file = e.target.files[0];
-        if(!file) return;
-        try{
-          showToast('Compression de la photo…');
-          const dataUrl = await fileToCompressedDataURL(file);
-          meals[el.dataset.idx].photo = dataUrl;
-          renderMeals();
-        }catch(err){ showToast("Impossible de charger la photo"); }
+      mealsContainer.querySelectorAll('.meal-time').forEach(el=>el.oninput=()=>{ meals[el.dataset.idx].time=el.value; });
+      mealsContainer.querySelectorAll('.meal-desc').forEach(el=>el.oninput=()=>{ meals[el.dataset.idx].desc=el.value; });
+      mealsContainer.querySelectorAll('.meal-faim').forEach(el=>el.oninput=()=>{ meals[el.dataset.idx].faim=el.value; mealsContainer.querySelector(`.meal-faim-val[data-idx="${el.dataset.idx}"]`).textContent=el.value; });
+      mealsContainer.querySelectorAll('.meal-mast').forEach(el=>el.oninput=()=>{ meals[el.dataset.idx].mastication=el.value; mealsContainer.querySelector(`.meal-mast-val[data-idx="${el.dataset.idx}"]`).textContent=el.value; });
+      mealsContainer.querySelectorAll('.meal-plaisir').forEach(el=>el.oninput=()=>{ meals[el.dataset.idx].plaisir=el.value; mealsContainer.querySelector(`.meal-plaisir-val[data-idx="${el.dataset.idx}"]`).textContent=el.value; });
+      mealsContainer.querySelectorAll('.remove-meal').forEach(el=>el.onclick=()=>{ meals.splice(Number(el.dataset.remove),1); renderMeals(); });
+      mealsContainer.querySelectorAll('.meal-photo-input').forEach(el=>el.onchange=async (e)=>{
+        const file = e.target.files[0]; if(!file) return;
+        try{ showToast('Compression…'); meals[el.dataset.idx].photo = await fileToCompressedDataURL(file); renderMeals(); }
+        catch(err){ showToast("Photo impossible",'error'); }
       });
     };
     renderMeals();
 
-    document.getElementById('add-meal-btn').onclick = ()=>{ meals.push(emptyMeal()); renderMeals(); };
-    document.getElementById('stress-slider').oninput = (e)=>{ document.getElementById('stress-val').textContent = e.target.value; };
-
-    document.getElementById('day-strip').querySelectorAll('.day-chip').forEach(chip=>{
-      chip.onclick = ()=>{ this.currentDay = chip.dataset.date; this.render(); };
+    // Hydration glasses
+    let hydraCount = Number(day.hydration_glasses||0);
+    document.getElementById('hydra-glasses').querySelectorAll('.hydra-glass').forEach(g=>{
+      g.onclick = ()=>{
+        const i = Number(g.dataset.i);
+        hydraCount = (hydraCount === i) ? i-1 : i;
+        document.getElementById('hydra-glasses').querySelectorAll('.hydra-glass').forEach(g2=>{
+          g2.classList.toggle('filled', Number(g2.dataset.i) <= hydraCount);
+        });
+      };
     });
+
+    // Mood picker
+    let selectedMood = day.mood || '';
+    document.getElementById('mood-picker').querySelectorAll('.mood-btn').forEach(b=>{
+      b.onclick = ()=>{
+        selectedMood = selectedMood === b.dataset.mood ? '' : b.dataset.mood;
+        document.getElementById('mood-picker').querySelectorAll('.mood-btn').forEach(bb=>bb.classList.toggle('active', bb.dataset.mood===selectedMood));
+      };
+    });
+
+    document.getElementById('add-meal-btn').onclick = ()=>{ meals.push(emptyMeal()); renderMeals(); };
+    document.getElementById('stress-slider').oninput = e=>{ document.getElementById('stress-val').textContent = e.target.value; };
+    document.getElementById('day-strip').querySelectorAll('.day-chip').forEach(c=>c.onclick=()=>{ this.currentDay=c.dataset.date; this.render(); });
     document.getElementById('logout-btn').onclick = ()=> this.logout();
+
+    document.querySelectorAll('[data-dismiss]').forEach(btn=>{
+      btn.onclick = async ()=>{
+        const id = btn.dataset.dismiss;
+        this.dismissedMsgs.add(id);
+        btn.closest('.coach-msg').style.display='none';
+        try{ await api('client.mark_read', { token:this.token, id }); }catch(e){}
+      };
+    });
 
     document.getElementById('save-btn').onclick = async ()=>{
       const btn = document.getElementById('save-btn');
       const newDay = {
-        date: iso,
-        meals,
+        date: iso, meals,
         activity: document.getElementById('activity-input').value,
         steps: document.getElementById('steps-input').value,
         stress_level: Number(document.getElementById('stress-slider').value),
         stress_type: document.getElementById('stress-type').value,
         stress_note: document.getElementById('stress-note').value,
         hydration: document.getElementById('hydration-input').value,
+        hydration_glasses: hydraCount,
+        mood: selectedMood,
         audio: {
-          hypnose_matin: document.getElementById('ck-hm').checked,
-          hypnose_matin_h: document.getElementById('h-hm').value,
-          journal: document.getElementById('ck-j').checked,
-          journal_h: document.getElementById('h-j').value,
-          hypnose_soir: document.getElementById('ck-hs').checked,
-          hypnose_soir_h: document.getElementById('h-hs').value,
-          sophro: document.getElementById('ck-so').checked,
-          sophro_h: document.getElementById('h-so').value,
+          hypnose_matin: document.getElementById('ck-hm').checked, hypnose_matin_h: document.getElementById('h-hm').value,
+          journal: document.getElementById('ck-j').checked, journal_h: document.getElementById('h-j').value,
+          hypnose_soir: document.getElementById('ck-hs').checked, hypnose_soir_h: document.getElementById('h-hs').value,
+          sophro: document.getElementById('ck-so').checked, sophro_h: document.getElementById('h-so').value,
         },
-        sleep: {
-          coucher: document.getElementById('coucher-input').value,
-          reveil: document.getElementById('reveil-input').value,
-        },
+        sleep: { coucher: document.getElementById('coucher-input').value, reveil: document.getElementById('reveil-input').value },
         waist_value: document.getElementById('waist-input').value,
       };
-      btn.disabled = true; btn.textContent = 'Enregistrement…';
+      btn.disabled=true; btn.textContent='Enregistrement…';
       try{
-        await saveDay(name, newDay);
-        btn.textContent = `Enregistrer le ${isoToFr(iso)}`;
-        btn.disabled = false;
+        await api('client.save_day', { token:this.token, day:newDay });
+        if(selectedMood) try{ await api('client.set_mood',{ token:this.token, emoji:selectedMood }); }catch(e){}
+        btn.disabled=false; btn.textContent=`Enregistrer le ${isoToFr(iso)}`;
         const confirmEl = document.getElementById('save-confirm');
-        confirmEl.classList.add('show');
-        setTimeout(()=>confirmEl.classList.remove('show'), 2500);
+        confirmEl.classList.add('show'); setTimeout(()=>confirmEl.classList.remove('show'),2500);
+        const newStreak = computeStreak([...allDays.filter(d=>d.date!==iso), newDay]);
+        if(newStreak > streak && newStreak >= 1) fireConfetti();
         this.render();
       }catch(e){
-        btn.disabled = false;
-        btn.textContent = `Enregistrer le ${isoToFr(iso)}`;
-        showToast("Échec de l'enregistrement. Réessaie.");
+        btn.disabled=false; btn.textContent=`Enregistrer le ${isoToFr(iso)}`;
+        showToast("Échec de l'enregistrement",'error');
+        if((e.message||'').includes('autorisé')) this.logout();
       }
     };
   },
 
   // ---------- COACH VIEW ----------
   async renderCoach(){
-    this.root.innerHTML = `<div class="loader"><div class="spinner"></div> Chargement du dashboard…</div>`;
+    this.root.innerHTML = `<div class="loader"><div class="spinner"></div> Chargement…</div>`;
     let clients;
-    try{ clients = await listClients(); }
+    try{ const r = await api('coach.list_clients', { token:this.token }); clients = r.clients || []; }
     catch(e){
-      this.root.innerHTML = `<div class="empty-state"><h3>Connexion impossible</h3><div>Vérifie ta connexion et réessaie.</div></div>`;
-      return;
+      if((e.message||'').includes('autorisé')){ this.logout(); return; }
+      this.root.innerHTML = `<div class="empty-state"><h3>Erreur</h3><div>${escapeHtml(e.message||'')}</div></div>`; return;
     }
-    if(!this.coachSelected && clients.length) this.coachSelected = clients[0];
+    if(!this.coachSelected && clients.length) this.coachSelected = clients[0].name;
 
     this.root.innerHTML = `
     <div class="app">
@@ -1059,64 +939,75 @@ const App = {
           </div>
         </div>
         <div class="topbar-actions">
-          <button class="pill-btn" id="logout-btn" type="button">Changer de profil</button>
+          <button class="pill-btn" id="pwd-btn" type="button">🔐 Mot de passe</button>
+          <button class="pill-btn" id="logout-btn" type="button">Déconnexion</button>
         </div>
       </div>
-      ${clients.length === 0 ? `
-        <div class="empty-state">
-          <h3>Aucune cliente pour l'instant</h3>
-          <div>Dès qu'une cliente entrera son prénom côté "Je suis cliente", elle apparaîtra ici.</div>
-        </div>
+      ${clients.length===0 ? `
+        <div class="empty-state"><h3>Aucune cliente</h3><div>Dès qu'une cliente entrera son prénom, elle apparaîtra ici.</div></div>
       ` : `
         <div class="coach-clients" id="client-chips">
-          ${clients.map(c=>`<button class="client-chip ${c===this.coachSelected?'active':''}" data-name="${escapeAttr(c)}" type="button">${escapeHtml(c)}</button>`).join('')}
+          ${clients.map(c=>`<button class="client-chip ${c.name===this.coachSelected?'active':''}" data-name="${escapeAttr(c.name)}" type="button">${c.mood_emoji?c.mood_emoji+' ':''}${escapeHtml(c.name)}</button>`).join('')}
         </div>
         <div id="coach-content"><div class="loader"><div class="spinner"></div></div></div>
       `}
     </div>`;
 
     document.getElementById('logout-btn').onclick = ()=> this.logout();
-    if(clients.length === 0) return;
-
-    this.root.querySelectorAll('.client-chip').forEach(chip=>{
-      chip.onclick = ()=>{ this.coachSelected = chip.dataset.name; this.persistSession(); this.render(); };
-    });
-
+    document.getElementById('pwd-btn').onclick = ()=> this.promptCoachPwdChange();
+    if(clients.length===0) return;
+    this.root.querySelectorAll('.client-chip').forEach(c=>c.onclick=()=>{ this.coachSelected=c.dataset.name; this.persist(); this.render(); });
     await this.renderCoachContent(this.coachSelected);
+  },
+
+  async promptCoachPwdChange(){
+    const np = prompt("Nouveau mot de passe coach (min 8 caractères) :");
+    if(!np) return;
+    if(np.length < 8){ showToast('Trop court (min 8)','error'); return; }
+    try{ await api('coach.change_password',{ token:this.token, new_password:np }); showToast('Mot de passe mis à jour 🔐','success'); }
+    catch(e){ showToast(e.message||'Erreur','error'); }
   },
 
   async renderCoachContent(name){
     const container = document.getElementById('coach-content');
-    let days;
-    try{ days = await loadAllDays(name); }
-    catch(e){ container.innerHTML = `<div class="empty-state"><h3>Erreur de chargement</h3></div>`; return; }
-    if(days.length === 0){
-      container.innerHTML = `<div class="empty-state"><h3>${escapeHtml(name)} n'a pas encore rempli de suivi</h3><div>Reviens un peu plus tard.</div></div>`;
+    let days, messages;
+    try{
+      const [dr, mr] = await Promise.all([
+        api('coach.load_client_days',{ token:this.token, name }),
+        api('coach.list_messages',{ token:this.token, name }),
+      ]);
+      days = dr.days || []; messages = mr.messages || [];
+    }catch(e){ container.innerHTML = `<div class="empty-state"><h3>Erreur de chargement</h3></div>`; return; }
+
+    if(days.length===0){
+      container.innerHTML = `
+        ${messageComposerHTML(name, messages)}
+        <div class="empty-state"><h3>${escapeHtml(name)} n'a pas encore rempli de suivi</h3></div>`;
+      this.wireComposer(name);
       return;
     }
     const streak = computeStreak(days);
     const lastDay = days[days.length-1];
     const totalMeals = days.reduce((a,d)=>a+d.meals.length,0);
     const avgStress = average(days.map(d=>d.stress_level).filter(v=>v!==undefined && v!==null && v!==''));
-    const waistEntries = days.filter(d=>d.waist_value).map(d=>({date:d.date, value:Number(d.waist_value)}));
+    const waistEntries = days.filter(d=>d.waist_value).map(d=>({date:d.date,value:Number(d.waist_value)}));
 
     container.innerHTML = `
+      ${messageComposerHTML(name, messages)}
       <div class="stat-grid">
         <div class="stat-card"><div class="eyebrow">Assiduité</div><div class="stat-val">${streak}</div><div class="stat-sub">jours de suite</div></div>
         <div class="stat-card"><div class="eyebrow">Repas suivis</div><div class="stat-val">${totalMeals}</div><div class="stat-sub">au total</div></div>
         <div class="stat-card"><div class="eyebrow">Stress moyen</div><div class="stat-val">${avgStress!==null?avgStress.toFixed(1):'–'}</div><div class="stat-sub">sur 10</div></div>
-        <div class="stat-card"><div class="eyebrow">Dernier jour rempli</div><div class="stat-val" style="font-size:18px;">${isoToFr(lastDay.date)}</div><div class="stat-sub">${dayLabel(lastDay.date)}</div></div>
+        <div class="stat-card"><div class="eyebrow">Dernier jour</div><div class="stat-val" style="font-size:18px;">${isoToFr(lastDay.date)}</div><div class="stat-sub">${dayLabel(lastDay.date)}</div></div>
       </div>
 
       <div class="chart-card">
-        <div class="eyebrow">Tour de taille</div>
-        <h2>Évolution</h2>
-        ${waistEntries.length>=1 ? lineChart(waistEntries, 'cm') : `<div style="color:var(--ink-soft); font-size:14px;">Pas encore de mesure enregistrée.</div>`}
+        <div class="eyebrow">Tour de taille</div><h2>Évolution</h2>
+        ${waistEntries.length>=1 ? lineChart(waistEntries,'cm') : `<div style="color:var(--ink-soft); font-size:14px;">Pas encore de mesure.</div>`}
       </div>
 
       <div class="chart-card">
-        <div class="eyebrow">Stress &amp; sommeil</div>
-        <h2>Derniers ${Math.min(days.length,14)} jours</h2>
+        <div class="eyebrow">Stress</div><h2>Derniers ${Math.min(days.length,14)} jours</h2>
         ${stressSleepChart(days.slice(-14))}
       </div>
 
@@ -1126,88 +1017,101 @@ const App = {
       </div>
       <div id="coach-day-detail"></div>
     `;
-
-    const showDetail = (iso)=>{
-      const d = days.find(x=>x.date===iso);
-      document.getElementById('coach-day-detail').innerHTML = dayDetailHTML(d);
-    };
-    container.querySelectorAll('#coach-day-strip .day-chip').forEach(chip=>{
-      chip.onclick = ()=>{
-        container.querySelectorAll('#coach-day-strip .day-chip').forEach(c=>c.classList.remove('active'));
-        chip.classList.add('active');
-        showDetail(chip.dataset.date);
-      };
+    this.wireComposer(name);
+    const showDetail = iso=>{ document.getElementById('coach-day-detail').innerHTML = dayDetailHTML(days.find(x=>x.date===iso)); };
+    container.querySelectorAll('#coach-day-strip .day-chip').forEach(c=>c.onclick=()=>{
+      container.querySelectorAll('#coach-day-strip .day-chip').forEach(cc=>cc.classList.remove('active'));
+      c.classList.add('active'); showDetail(c.dataset.date);
     });
     showDetail(days[days.length-1].date);
   },
+
+  wireComposer(name){
+    const ta = document.getElementById('coach-msg-text');
+    const btn = document.getElementById('coach-msg-send');
+    if(!ta || !btn) return;
+    btn.onclick = async ()=>{
+      const text = ta.value.trim();
+      if(!text) return;
+      btn.disabled = true; btn.textContent = 'Envoi…';
+      try{
+        await api('coach.send_message',{ token:this.token, name, message:text });
+        ta.value=''; showToast('Message envoyé 💌','success'); fireConfetti();
+        await this.renderCoachContent(name);
+      }catch(e){ showToast(e.message||'Erreur','error'); }
+      btn.disabled=false; btn.textContent='Envoyer';
+    };
+  },
 };
 
-function average(arr){
-  if(!arr.length) return null;
-  const nums = arr.map(Number);
-  return nums.reduce((a,b)=>a+b,0)/nums.length;
+function messageComposerHTML(name, messages){
+  return `
+    <div class="composer">
+      <div class="eyebrow">Message à ${escapeHtml(name)}</div>
+      <h2 style="margin:6px 0 12px;">Lui écrire un petit mot 💌</h2>
+      <textarea id="coach-msg-text" rows="3" placeholder="Ex: Super semaine ! Continue comme ça 🌿" maxlength="2000"></textarea>
+      <div class="composer-actions">
+        <button class="btn btn-emerald" id="coach-msg-send" type="button">Envoyer</button>
+      </div>
+      ${messages.length ? `
+        <div style="margin-top:14px;">
+          <div class="eyebrow" style="color:var(--ink-soft);">Historique</div>
+          ${messages.slice(0,5).map(m=>`
+            <div style="padding:10px 0; border-bottom:1px solid var(--peach);">
+              <div style="font-size:13px; color:var(--ink);">${escapeHtml(m.message)}</div>
+              <div style="font-size:11px; color:var(--ink-soft); margin-top:4px; font-family:'Space Mono';">${timeAgo(m.created_at)} ${m.read_at?'· lu':'· non lu'}</div>
+            </div>`).join('')}
+        </div>` : ''}
+    </div>`;
 }
+
+function average(arr){ if(!arr.length) return null; const n = arr.map(Number); return n.reduce((a,b)=>a+b,0)/n.length; }
 
 function dayDetailHTML(d){
   if(!d) return '';
-  const audioLabels = [];
-  if(d.audio.hypnose_matin) audioLabels.push('Hypnose matin'+(d.audio.hypnose_matin_h?` (${d.audio.hypnose_matin_h})`:''));
-  if(d.audio.journal) audioLabels.push('Journal & gratitude'+(d.audio.journal_h?` (${d.audio.journal_h})`:''));
-  if(d.audio.hypnose_soir) audioLabels.push('Hypnose soir'+(d.audio.hypnose_soir_h?` (${d.audio.hypnose_soir_h})`:''));
-  if(d.audio.sophro) audioLabels.push('Sophrologie'+(d.audio.sophro_h?` (${d.audio.sophro_h})`:''));
-
+  const aL = [];
+  if(d.audio?.hypnose_matin) aL.push('Hypnose matin'+(d.audio.hypnose_matin_h?` (${d.audio.hypnose_matin_h})`:''));
+  if(d.audio?.journal) aL.push('Journal'+(d.audio.journal_h?` (${d.audio.journal_h})`:''));
+  if(d.audio?.hypnose_soir) aL.push('Hypnose soir'+(d.audio.hypnose_soir_h?` (${d.audio.hypnose_soir_h})`:''));
+  if(d.audio?.sophro) aL.push('Sophrologie'+(d.audio.sophro_h?` (${d.audio.sophro_h})`:''));
   return `
     <div class="day-detail">
       <div class="day-detail-head">
-        <h3>${isoToFr(d.date)} <span style="color:var(--ink-soft); font-weight:400;">(${dayLabel(d.date)})</span></h3>
+        <h3>${isoToFr(d.date)} <span style="color:var(--ink-soft); font-weight:400;">(${dayLabel(d.date)})</span>${d.mood?` <span style="font-size:22px;">${d.mood}</span>`:''}</h3>
         <div class="mono">Semaine ${isoWeekNumber(d.date)}</div>
       </div>
-
       <div class="info-grid">
         <div class="info-item"><div class="eyebrow">Activité</div><div class="v">${escapeHtml(d.activity||'—')}${d.steps?` · ${escapeHtml(String(d.steps))} pas`:''}</div></div>
         <div class="info-item"><div class="eyebrow">Stress</div><div class="v">${d.stress_level}/10 · ${d.stress_type==='positif'?'Positif':'Négatif'}${d.stress_note?` — ${escapeHtml(d.stress_note)}`:''}</div></div>
-        <div class="info-item"><div class="eyebrow">Hydratation</div><div class="v">${escapeHtml(d.hydration||'—')}</div></div>
-        <div class="info-item"><div class="eyebrow">Sommeil</div><div class="v">${d.sleep.coucher||'—'} → ${d.sleep.reveil||'—'}</div></div>
+        <div class="info-item"><div class="eyebrow">Hydratation</div><div class="v">${escapeHtml(d.hydration||'—')}${d.hydration_glasses?` · ${d.hydration_glasses} 💧`:''}</div></div>
+        <div class="info-item"><div class="eyebrow">Sommeil</div><div class="v">${d.sleep?.coucher||'—'} → ${d.sleep?.reveil||'—'}</div></div>
         <div class="info-item"><div class="eyebrow">Tour de taille</div><div class="v">${d.waist_value?d.waist_value+' cm':'—'}</div></div>
-        <div class="info-item"><div class="eyebrow">Rituel bien-être</div><div class="v">${audioLabels.length?audioLabels.join(', '):'—'}</div></div>
+        <div class="info-item"><div class="eyebrow">Rituel</div><div class="v">${aL.length?aL.join(', '):'—'}</div></div>
       </div>
-
       <div class="eyebrow" style="margin-bottom:8px; display:block;">Repas (${d.meals.length})</div>
-      ${d.meals.length===0 ? `<div style="color:var(--ink-soft); font-size:14px;">Aucun repas enregistré ce jour.</div>` :
+      ${d.meals.length===0 ? `<div style="color:var(--ink-soft); font-size:14px;">Aucun repas.</div>` :
         d.meals.map((m,i)=>`
-        <div class="meal-summary">
-          ${m.photo ? `<img src="${m.photo}" alt="repas ${i+1}" loading="lazy">` : `<div class="meal-no-img">repas ${i+1}</div>`}
-          <div class="meal-info">
-            <div class="meal-time">${m.time||'—'}</div>
-            <div class="meal-desc">${escapeHtml(m.desc||'(pas de description)')}</div>
-            <div class="meal-metrics">
-              <span>faim ${m.faim}/10</span>
-              <span>mastication ${m.mastication}/10</span>
-              <span>plaisir ${m.plaisir}/10</span>
+          <div class="meal-summary">
+            ${m.photo ? `<img src="${m.photo}" alt="repas ${i+1}" loading="lazy">` : `<div class="meal-no-img">repas ${i+1}</div>`}
+            <div class="meal-info">
+              <div class="meal-time">${m.time||'—'}</div>
+              <div class="meal-desc">${escapeHtml(m.desc||'(pas de description)')}</div>
+              <div class="meal-metrics"><span>faim ${m.faim}/10</span><span>mast. ${m.mastication}/10</span><span>plaisir ${m.plaisir}/10</span></div>
             </div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
+          </div>`).join('')}
+    </div>`;
 }
 
 function lineChart(entries, unit){
-  const w = 600, h = 220, pad = 36;
+  const w=600, h=220, pad=36;
   const values = entries.map(e=>e.value);
-  const min = Math.min(...values) - 1, max = Math.max(...values) + 1;
-  const range = max-min || 1;
+  const min = Math.min(...values)-1, max = Math.max(...values)+1, range = max-min || 1;
   const stepX = entries.length>1 ? (w-pad*2)/(entries.length-1) : 0;
-  const pts = entries.map((e,i)=>{
-    const x = pad + (entries.length>1 ? i*stepX : (w-pad*2)/2);
-    const y = pad + (h-pad*2) * (1 - (e.value-min)/range);
-    return {x,y,e};
-  });
-  const path = pts.map((p,i)=> (i===0?'M':'L')+p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
-  const areaPath = pts.length>1 ? path + ` L${pts[pts.length-1].x.toFixed(1)},${h-pad} L${pts[0].x.toFixed(1)},${h-pad} Z` : '';
-  return `
-  <svg class="chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">
-    ${areaPath?`<path d="${areaPath}" fill="#1F6F5C" opacity="0.08"/>`:''}
+  const pts = entries.map((e,i)=>({ x: pad + (entries.length>1 ? i*stepX : (w-pad*2)/2), y: pad + (h-pad*2)*(1-(e.value-min)/range), e }));
+  const path = pts.map((p,i)=>(i===0?'M':'L')+p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
+  const area = pts.length>1 ? path + ` L${pts[pts.length-1].x.toFixed(1)},${h-pad} L${pts[0].x.toFixed(1)},${h-pad} Z` : '';
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}">
+    ${area?`<path d="${area}" fill="#1F6F5C" opacity="0.08"/>`:''}
     <path d="${path}" fill="none" stroke="#1F6F5C" stroke-width="2.5"/>
     ${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#1F6F5C"/>`).join('')}
     ${pts.map(p=>`<text x="${p.x}" y="${h-pad+18}" font-size="10" fill="#6B6258" text-anchor="middle" font-family="Space Mono">${dayLabel(p.e.date)}</text>`).join('')}
@@ -1216,43 +1120,52 @@ function lineChart(entries, unit){
 }
 
 function stressSleepChart(days){
-  const w = 600, h = 240, pad = 36;
-  const n = days.length;
-  if(n===0) return `<div style="color:var(--ink-soft); font-size:14px;">Pas de données.</div>`;
-  const stepX = n>1 ? (w-pad*2)/(n-1) : 0;
-  const maxStress = 10;
-  const pts = days.map((d,i)=>{
-    const x = pad + (n>1 ? i*stepX : (w-pad*2)/2);
-    const y = pad + (h-pad*2) * (1 - (Number(d.stress_level||0))/maxStress);
-    return {x,y,d};
-  });
+  const w=600, h=240, pad=36;
+  if(days.length===0) return `<div style="color:var(--ink-soft);">Pas de données.</div>`;
+  const stepX = days.length>1 ? (w-pad*2)/(days.length-1) : 0;
+  const pts = days.map((d,i)=>({ x: pad + (days.length>1 ? i*stepX : (w-pad*2)/2), y: pad + (h-pad*2)*(1-(Number(d.stress_level||0))/10), d }));
   const path = pts.map((p,i)=>(i===0?'M':'L')+p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
-  return `
-  <svg class="chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">
+  return `<svg class="chart" viewBox="0 0 ${w} ${h}">
     <line x1="${pad}" y1="${pad}" x2="${w-pad}" y2="${pad}" stroke="#D9D2C7" stroke-width="1"/>
     <line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="#D9D2C7" stroke-width="1"/>
     <path d="${path}" fill="none" stroke="#E8542E" stroke-width="2.5"/>
     ${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#E8542E"/>`).join('')}
     ${pts.map(p=>`<text x="${p.x}" y="${h-pad+18}" font-size="10" fill="#6B6258" text-anchor="middle" font-family="Space Mono">${dayLabel(p.d.date)}</text>`).join('')}
     ${pts.map(p=>`<text x="${p.x}" y="${p.y-10}" font-size="11" fill="#2B2622" text-anchor="middle" font-family="Space Mono" font-weight="700">${p.d.stress_level}</text>`).join('')}
-    <text x="${pad}" y="${pad-12}" font-size="11" fill="#E8542E" font-family="Space Mono" font-weight="700">— niveau de stress /10</text>
   </svg>`;
 }
 
-function avatarStageName(stage){
-  return ['Premiers pas','Petite habitude prise','Le rituel s\'installe','Belle régularité','En pleine énergie'][stage] || 'Premiers pas';
-}
-function moodMessage(mood){
-  if(mood==='happy') return "Tu rayonnes ces derniers jours ✨";
-  if(mood==='low') return "Une période plus dense — sois douce avec toi 💛";
+function avatarStageName(s){ return ['Premiers pas','Petite habitude prise','Le rituel s\'installe','Belle régularité','En pleine énergie'][s] || 'Premiers pas'; }
+function moodMessage(m){
+  if(m==='happy') return "Tu rayonnes ces derniers jours ✨";
+  if(m==='low') return "Une période plus dense — sois douce avec toi 💛";
   return "Continue, chaque jour compte 💪";
 }
-function escapeHtml(str){
-  if(str===undefined || str===null) return '';
-  return String(str).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function escapeAttr(str){ return escapeHtml(str); }
+function escapeHtml(str){ if(str===undefined||str===null) return ''; return String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(s){ return escapeHtml(s); }
 
+// PWA: register service worker
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{ navigator.serviceWorker.register('/sw.js').catch(()=>{}); });
+}
+
+// Install prompt
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault(); deferredPrompt = e;
+  if(sessionStorage.getItem('install_dismissed')) return;
+  setTimeout(()=>{
+    if(!deferredPrompt) return;
+    const el = document.createElement('div');
+    el.className = 'install-prompt';
+    el.innerHTML = `<span>📱 Installer le carnet sur ton téléphone ?</span><button id="ip-yes">Installer</button><button class="close" id="ip-no">×</button>`;
+    document.body.appendChild(el);
+    el.querySelector('#ip-yes').onclick = async ()=>{ deferredPrompt.prompt(); deferredPrompt = null; el.remove(); };
+    el.querySelector('#ip-no').onclick = ()=>{ sessionStorage.setItem('install_dismissed','1'); el.remove(); };
+  }, 8000);
+});
+
+window.App = App;
 App.init();
 </script>
 </body>

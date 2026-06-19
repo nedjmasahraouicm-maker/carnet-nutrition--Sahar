@@ -1,72 +1,91 @@
 # Carnet de Suivi — Sahar
 
-App web (single-file HTML) pour le suivi nutrition & bien-être, partagée entre clientes et coach. Stockage Supabase (Postgres).
+App web installable (PWA) pour suivi nutrition & bien-être, partagée entre clientes et coach. Backend Supabase (Postgres + Edge Function `api`).
+
+## Architecture sécurisée
+
+```
+[ Navigateur ]  --POST signed token-->  [ Edge Function `api` ]  --service_role-->  [ Postgres + RLS verrouillée ]
+```
+
+**Aucune table n'est lisible directement** par la clé `anon`. RLS activée, **zéro policy ouverte**. Tout passe par la fonction `api` qui :
+
+- vérifie un **token HMAC-SHA256 signé** (claims `role`+`name`+`exp` 12h),
+- hash les **PIN clientes** et le **mot de passe coach** en **PBKDF2-SHA256 (100 000 itérations)** avec sel aléatoire,
+- compare en **temps constant** (anti-timing-attack),
+- applique du **rate-limiting** (5 essais → 15 min de lockout par IP+identifiant),
+- valide chaque entrée (regex prénom Unicode, PIN 4-8 chiffres, date ISO, taille JSON max 8 Mo),
+- pose des en-têtes CORS stricts.
+
+Côté hébergeur (`netlify.toml`) : **CSP stricte**, HSTS, X-Frame-Options DENY, Permissions-Policy fermé, COOP same-origin.
+
+### Configuration sensible (à faire avant la mise en ligne définitive)
+
+Dans **Supabase Dashboard → Project Settings → Edge Functions → Secrets**, définir :
+
+| Variable | Description |
+|---|---|
+| `CARNET_AUTH_SECRET` | Secret HMAC ≥ 32 caractères aléatoires. **Sans ça, les fallback par défaut sont devinables.** |
+| `CARNET_INITIAL_COACH_PASSWORD` | Mot de passe coach initial (sinon `sahar-coach-2025`). |
+
+Générer rapidement : `openssl rand -base64 48` ou `node -e "console.log(require('crypto').randomBytes(48).toString('base64'))"`.
+
+La coach peut **changer son mot de passe** ensuite via le bouton « 🔐 Mot de passe » dans le dashboard.
+
+## Schéma
+
+- `clients(name pk, pin_hash, pin_salt, mood_emoji, last_login_at, created_at)`
+- `day_entries(client_name fk, date, data jsonb, updated_at)` — PK composite
+- `coach_credentials(id=1 pk, password_hash, password_salt, updated_at)`
+- `coach_messages(id uuid, client_name fk, message, created_at, read_at)`
+- `auth_attempts(identifier pk, fails, locked_until, updated_at)` — anti-brute-force
+
+## Features
+
+### Cliente
+- Connexion par **prénom + PIN à 4-8 chiffres** (chiffré côté serveur)
+- Carnet quotidien : repas (heure, description, faim/mastication/plaisir, photo compressée), activité, stress, hydratation (verres cliquables), sommeil, tour de taille, rituel bien-être
+- **Humeur du jour** (emoji picker) — visible côté coach
+- **Avatar évolutif** (5 stages) avec **streak** et **badges**
+- **Récap hebdomadaire** (repas, hydratation moyenne, pas moyens)
+- **Citation du jour** rotative
+- **Messages de la coach** en bandeau (lu/non lu, archivage)
+- **Confettis** sur nouveau streak / sauvegarde réussie
+- **PWA installable** (Android & iOS), shell mis en cache, marche partiellement hors ligne
+- Sticky save button mobile-friendly, photos prises directement via l'appareil photo
+
+### Coach
+- Dashboard avec liste de clientes (avec emoji d'humeur)
+- Stats : assiduité, repas suivis, stress moyen, dernier jour rempli
+- Graphiques tour de taille + stress sur 14 jours
+- Journal détaillé par jour (toutes les saisies + repas avec photos)
+- **Envoi de messages** à la cliente
+- **Changement de mot de passe** depuis l'interface
+
+## Déploiement Netlify
+
+L'app est un site statique 100% côté client → drag-and-drop sur Netlify, ou :
+
+```bash
+netlify deploy --prod
+```
+
+Headers de sécurité, CSP, et configuration sw.js sont déjà dans `netlify.toml`.
+
+L'URL est listée à la fin du déploiement. Le service worker s'active à la 2ᵉ visite.
 
 ## Lancer en local
 
-C'est un fichier statique : ouvre simplement `index.html` dans un navigateur, ou sers le dossier.
-
 ```bash
-# Option 1 : Python
 python3 -m http.server 8000
-# Option 2 : Node
-npx serve .
+# puis http://localhost:8000
 ```
 
-Puis va sur http://localhost:8000
+Le service worker ne s'active qu'en HTTPS ou sur `localhost`.
 
-## Configuration
+## Pistes futures
 
-Tout est dans le `<script>` en haut de `index.html` :
-
-- `SUPABASE_URL` — URL du projet Supabase
-- `SUPABASE_ANON_KEY` — clé anon (publishable). Pas secrète.
-- `COACH_CODE` — code que la coach saisit côté "Je suis coach". **À changer avant publication.**
-
-## Base de données
-
-Projet Supabase : `Carnet de suivi Sahar` (`rjfqxdmyrjwviijicnlu`, région eu-west-3).
-
-Schéma (migration `init_carnet_schema`) :
-
-- `clients(name pk, created_at)`
-- `day_entries(client_name fk, date, data jsonb, updated_at)` — clé composite `(client_name, date)`
-
-RLS activée, policies ouvertes pour `anon` (lecture/écriture). Toute la sécurité passe par le `COACH_CODE` côté UI et le fait que les clientes ne se "voient" pas entre elles dans l'UI. Pour une vraie séparation (utilisable par plusieurs coachs), passer à Supabase Auth.
-
-## Déploiement
-
-Site 100% statique → choix simples :
-
-### Netlify
-1. `netlify deploy --prod` (ou drag&drop du dossier sur netlify.com)
-2. Le fichier `netlify.toml` est prêt.
-
-### Vercel
-1. `vercel --prod`
-2. Le fichier `vercel.json` est prêt.
-
-### GitHub Pages
-1. Push sur la branche `main`.
-2. Repo Settings → Pages → Source = "Deploy from a branch" / `main` / `/`.
-
-### Cloudflare Pages
-1. Connecter le repo, build command : *(vide)*, output : `/`.
-
-## Audit / état actuel
-
-Fait :
-- Storage Supabase (avant : `window.storage`, qui n'existe pas hors prototype).
-- Sessions persistées (`sessionStorage`) → on ne se reconnecte pas à chaque rechargement.
-- Compression JPEG des photos de repas (max 1280px, qualité 0.78) — évite que le JSONB n'explose.
-- Mobile-friendly : viewport `viewport-fit=cover`, safe-area inset, font-size ≥ 16px (pas de zoom auto iOS), boutons ≥ 44px, sliders à thumb 26px, breakpoints 520/600/760/420.
-- Code coach minimal (`COACH_CODE`).
-- Bouton "Enregistrer" sticky en bas (mobile UX).
-- Loaders, toasts d'erreur, états vides.
-- Échappement HTML correct (XSS).
-
-À envisager ensuite :
-- **Auth Supabase** (magic link) pour la coach, et un vrai mapping `coach ↔ clientes`.
-- **Supabase Storage** pour les photos de repas (au lieu du base64 inline) — meilleure perf, photos plus nettes.
-- Export PDF / partage hebdo.
-- PWA (manifest + service worker) pour usage offline + ajout à l'écran d'accueil.
+- Notifications push (rappel « tu as oublié ton dîner ») via Supabase Edge + Web Push.
+- Export PDF hebdo partageable.
+- Supabase Storage pour les photos (au lieu du base64 inline en JSONB).
+- Auth multi-coach (1 coach ↔ N clientes via `coach_id`).
